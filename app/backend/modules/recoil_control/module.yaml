@@ -1,0 +1,98 @@
+{
+  "id": "recoil_control",
+  "version": "1.2.0",
+  "contract_version": 1,
+  "title": "连续射击与压枪",
+  "status": "active",
+  "enabled": true,
+  "description": "连续射击与压枪",
+  "requires": {
+    "tables": [
+      "bursts",
+      "shots",
+      "player_states",
+      "weapon_states"
+    ],
+    "capabilities": {
+      "all_of": [
+        "events",
+        "pitch",
+        "yaw"
+      ]
+    }
+  },
+  "optional_capabilities": [
+    "effective_recoil",
+    "visibility_geometry"
+  ],
+  "feature_dependencies": [
+    "bursts"
+  ],
+  "raw_fields": [
+    "X",
+    "Y",
+    "Z",
+    "pitch",
+    "yaw",
+    "duck_amount",
+    "is_airborne",
+    "is_scoped",
+    "flash_duration",
+    "active_weapon_name",
+    "active_weapon_ammo",
+    "weapon_handle",
+    "shots_fired",
+    "accuracy_penalty",
+    "recoil_base",
+    "recoil_index",
+    "flags",
+    "move_type",
+    "is_reloading",
+    "pawn_handle",
+    "burst_mode",
+    "FIRE",
+    "usercmd_buttonstate_1"
+  ],
+  "parameters_schema": "parameters.schema.json",
+  "result_schema": "result.schema.json",
+  "metric_ids": [
+    "descriptive_sequences",
+    "view_pitch_delta_p50",
+    "compensation_residual_rms",
+    "actual_impact_dispersion"
+  ],
+  "views": [
+    "summary_cards",
+    "distributions",
+    "evidence_table",
+    "time_series"
+  ],
+  "order": 3,
+  "presentation": {
+    "evidence_selectors": [
+      {
+        "field": "attack_input_status",
+        "label": "攻击输入（仅筛选证据）",
+        "default": "",
+        "options": [
+          {
+            "value": "",
+            "label": "全部连续射击片段"
+          },
+          {
+            "value": "continuous_attack_samples",
+            "label": "攻击输入持续观测"
+          },
+          {
+            "value": "intermittent_attack_samples",
+            "label": "攻击输入存在间断"
+          },
+          {
+            "value": "unknown",
+            "label": "输入未知"
+          }
+        ]
+      }
+    ]
+  }
+}

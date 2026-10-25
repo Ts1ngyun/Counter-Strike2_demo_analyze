@@ -1,0 +1,46 @@
+{
+  "id": "utility_analysis",
+  "version": "2.0.0",
+  "contract_version": 1,
+  "title": "闪光弹分析",
+  "status": "active",
+  "enabled": true,
+  "description": "逐颗闪光的敌我影响、游戏闪助与闪后击杀关联；原生事件优先，状态变化谨慎推导",
+  "requires": {
+    "tables": [
+      "events",
+      "players",
+      "rounds",
+      "player_states"
+    ],
+    "capabilities": {
+      "all_of": [
+        "events"
+      ]
+    }
+  },
+  "optional_capabilities": [
+    "flash_duration"
+  ],
+  "feature_dependencies": [],
+  "raw_fields": [
+    "flash_duration",
+    "pawn_handle"
+  ],
+  "parameters_schema": "parameters.schema.json",
+  "result_schema": "result.schema.json",
+  "metric_ids": [
+    "flash_detonations",
+    "enemy_affected_flashes",
+    "enemy_blind_records",
+    "teammate_blind_records",
+    "self_blind_records",
+    "flash_assists_recorded"
+  ],
+  "views": [
+    "summary_cards",
+    "evidence_table",
+    "flash_review"
+  ],
+  "order": 6
+}

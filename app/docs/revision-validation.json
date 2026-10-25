@@ -1,0 +1,29 @@
+{
+  "job_id": "54139e65fa594071b8c1c35f16d1f730",
+  "demo_hash": "e454e16b96a15bcaa6dd1fb61f88bfb816dc9da4229ad0b34294b1c1b0de2f43",
+  "passed": true,
+  "kill_windows": 130,
+  "kill_judgements": {
+    "descriptive": 115,
+    "excluded_awp": 14,
+    "unknown": 1
+  },
+  "attack_input_observations": {
+    "intermittent_attack_samples": 89,
+    "continuous_attack_samples": 60
+  },
+  "metrics": 2332,
+  "evidence": 12233,
+  "performance": {
+    "facts_bytes": 51849757,
+    "facts_cache_hit": true,
+    "peak_sampled_worker_rss_bytes": 514498560,
+    "rss_sample_interval_ms": 50,
+    "wall_seconds": 5.97708799999964
+  },
+  "limitations": [
+    "one real demo only",
+    "no real shotgun or taser kill in this fixture; covered by synthetic boundary tests",
+    "shotgun general lethal distance remains uncalibrated"
+  ]
+}

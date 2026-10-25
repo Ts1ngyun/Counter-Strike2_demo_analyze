@@ -1,0 +1,104 @@
+{
+  "id": "stop_shooting",
+  "version": "1.1.0",
+  "contract_version": 1,
+  "title": "急停与停步开枪",
+  "status": "active",
+  "enabled": true,
+  "description": "急停与停步开枪",
+  "requires": {
+    "tables": [
+      "shots",
+      "player_states",
+      "weapon_states"
+    ],
+    "capabilities": {
+      "all_of": [
+        "events",
+        {
+          "any_of": [
+            "native_velocity",
+            "estimated_velocity"
+          ]
+        }
+      ]
+    }
+  },
+  "optional_capabilities": [
+    "effective_recoil",
+    "visibility_geometry"
+  ],
+  "feature_dependencies": [
+    "movement"
+  ],
+  "raw_fields": [
+    "X",
+    "Y",
+    "Z",
+    "pitch",
+    "yaw",
+    "duck_amount",
+    "is_airborne",
+    "is_scoped",
+    "flash_duration",
+    "active_weapon_name",
+    "active_weapon_ammo",
+    "weapon_handle",
+    "shots_fired",
+    "accuracy_penalty",
+    "recoil_base",
+    "recoil_index",
+    "flags",
+    "move_type",
+    "is_reloading",
+    "pawn_handle",
+    "burst_mode"
+  ],
+  "parameters_schema": "parameters.schema.json",
+  "result_schema": "result.schema.json",
+  "metric_ids": [
+    "shot_stationary_ready_rate",
+    "movement_to_first_shot_ready_rate",
+    "reverse_input_evidence"
+  ],
+  "views": [
+    "summary_cards",
+    "distributions",
+    "evidence_table",
+    "time_series"
+  ],
+  "order": 2,
+  "presentation": {
+    "metric_selector": {
+      "label": "统计口径",
+      "default": "movement_to_first_shot_ready_rate",
+      "options": [
+        {
+          "value": "movement_to_first_shot_ready_rate",
+          "label": "移动后首枪达标率"
+        },
+        {
+          "value": "shot_stationary_ready_rate",
+          "label": "开枪低速达标率"
+        }
+      ]
+    },
+    "scope_selectors": [
+      {
+        "field": "weapon_set",
+        "label": "武器范围",
+        "default": "all",
+        "options": [
+          {
+            "value": "all",
+            "label": "全武器"
+          },
+          {
+            "value": "exclude_run_and_gun",
+            "label": "除跑打武器"
+          }
+        ]
+      }
+    ]
+  }
+}

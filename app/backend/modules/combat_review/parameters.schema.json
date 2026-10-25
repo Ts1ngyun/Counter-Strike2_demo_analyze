@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "before_death_seconds",
+    "after_death_seconds",
+    "trade_seconds",
+    "engagement_gap_seconds",
+    "speed_margin"
+  ],
+  "properties": {
+    "before_death_seconds": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 20
+    },
+    "after_death_seconds": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 20
+    },
+    "trade_seconds": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 20
+    },
+    "engagement_gap_seconds": {
+      "type": "number",
+      "minimum": 0.1,
+      "maximum": 20
+    },
+    "speed_margin": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 20
+    }
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "min_burst_shots": 4,
+  "pose_change_limit": 0.5
+}

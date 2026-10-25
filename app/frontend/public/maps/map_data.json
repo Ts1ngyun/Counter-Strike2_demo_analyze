@@ -1,0 +1,161 @@
+{
+  "ar_baggage": {
+    "pos_x": -1316.0,
+    "pos_y": 1288.0,
+    "rotate": 1.0,
+    "scale": 2.539062,
+    "verticalsections": {
+      "default": {
+        "AltitudeMax": "10000",
+        "AltitudeMin": "-5"
+      },
+      "lower": {
+        "AltitudeMax": "-5",
+        "AltitudeMin": "-10000"
+      }
+    },
+    "zoom": 1.3
+  },
+  "ar_shoots": {
+    "pos_x": -1368.0,
+    "pos_y": 1952.0,
+    "rotate": null,
+    "scale": 2.6875,
+    "zoom": null
+  },
+  "ar_shoots_night": {
+    "pos_x": -1368.0,
+    "pos_y": 1952.0,
+    "rotate": null,
+    "scale": 2.6875,
+    "zoom": null
+  },
+  "cs_italy": {
+    "pos_x": -2647.0,
+    "pos_y": 2592.0,
+    "rotate": 1.0,
+    "scale": 4.6,
+    "zoom": 1.5
+  },
+  "cs_office": {
+    "pos_x": -1838.0,
+    "pos_y": 1858.0,
+    "rotate": null,
+    "scale": 4.1,
+    "zoom": null
+  },
+  "de_ancient": {
+    "pos_x": -2953.0,
+    "pos_y": 2164.0,
+    "rotate": 0.0,
+    "scale": 5.0,
+    "zoom": 0.0
+  },
+  "de_ancient_night": {
+    "pos_x": -2953.0,
+    "pos_y": 2164.0,
+    "rotate": 0.0,
+    "scale": 5.0,
+    "zoom": 0.0
+  },
+  "de_anubis": {
+    "pos_x": -2796.0,
+    "pos_y": 3328.0,
+    "rotate": null,
+    "scale": 5.22,
+    "zoom": null
+  },
+  "de_cache": {
+    "pos_x": -2000.0,
+    "pos_y": 3250.0,
+    "rotate": null,
+    "scale": 5.5,
+    "zoom": null
+  },
+  "de_dust2": {
+    "pos_x": -2476.0,
+    "pos_y": 3239.0,
+    "rotate": 1.0,
+    "scale": 4.4,
+    "zoom": 1.1
+  },
+  "de_inferno": {
+    "pos_x": -2087.0,
+    "pos_y": 3870.0,
+    "rotate": null,
+    "scale": 4.9,
+    "zoom": null
+  },
+  "de_mirage": {
+    "pos_x": -3230.0,
+    "pos_y": 1713.0,
+    "rotate": 0.0,
+    "scale": 5.0,
+    "zoom": 0.0
+  },
+  "de_nuke": {
+    "pos_x": -3453.0,
+    "pos_y": 2887.0,
+    "rotate": null,
+    "scale": 7.0,
+    "verticalsections": {
+      "default": {
+        "AltitudeMax": "10000",
+        "AltitudeMin": "-495"
+      },
+      "lower": {
+        "AltitudeMax": "-495",
+        "AltitudeMin": "-10000"
+      }
+    },
+    "zoom": null
+  },
+  "de_overpass": {
+    "pos_x": -4831.0,
+    "pos_y": 1781.0,
+    "rotate": 0.0,
+    "scale": 5.2,
+    "zoom": 0.0
+  },
+  "de_train": {
+    "pos_x": -2308.0,
+    "pos_y": 2078.0,
+    "rotate": null,
+    "scale": 4.082077,
+    "verticalsections": {
+      "default": {
+        "AltitudeMax": "20000",
+        "AltitudeMin": "-50"
+      },
+      "lower": {
+        "AltitudeMax": "-50",
+        "AltitudeMin": "-5000"
+      }
+    },
+    "zoom": null
+  },
+  "de_vertigo": {
+    "pos_x": -3168.0,
+    "pos_y": 1762.0,
+    "rotate": null,
+    "scale": 4.0,
+    "verticalsections": {
+      "default": {
+        "AltitudeMax": "20000",
+        "AltitudeMin": "11700"
+      },
+      "lower": {
+        "AltitudeMax": "11700",
+        "AltitudeMin": "-10000"
+      }
+    },
+    "zoom": null
+  },
+  "rush_001": {
+    "pos_x": -11240.0,
+    "pos_y": 9944.0,
+    "rotate": null,
+    "scale": 18.910156,
+    "zoom": null
+  }
+}

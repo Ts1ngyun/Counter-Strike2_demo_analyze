@@ -1,0 +1,113 @@
+{
+  "id": "head_line",
+  "version": "2.1.1",
+  "contract_version": 1,
+  "title": "交战瞄准变化",
+  "status": "active",
+  "enabled": true,
+  "description": "击杀、死亡和序列内无击杀的首枪前窗口分别描述，不混合分母",
+  "requires": {
+    "tables": [
+      "player_states",
+      "engagements",
+      "events"
+    ],
+    "capabilities": {
+      "all_of": [
+        "events",
+        "continuous_time",
+        "X",
+        "Y",
+        "Z",
+        "pitch",
+        "yaw",
+        "duck_amount"
+      ]
+    }
+  },
+  "optional_capabilities": [
+    "effective_recoil",
+    "visibility_geometry"
+  ],
+  "feature_dependencies": [
+    "engagements"
+  ],
+  "raw_fields": [
+    "X",
+    "Y",
+    "Z",
+    "pitch",
+    "yaw",
+    "duck_amount",
+    "is_airborne",
+    "is_scoped",
+    "flash_duration",
+    "active_weapon_name",
+    "active_weapon_ammo",
+    "weapon_handle",
+    "shots_fired",
+    "accuracy_penalty",
+    "recoil_base",
+    "recoil_index",
+    "flags",
+    "move_type",
+    "is_reloading",
+    "pawn_handle",
+    "burst_mode",
+    "armor_value"
+  ],
+  "parameters_schema": "parameters.schema.json",
+  "result_schema": "result.schema.json",
+  "metric_ids": [
+    "head_in_band_time",
+    "head_high_time",
+    "head_low_time",
+    "head_abs_error_p50",
+    "head_abs_error_p90",
+    "verified_head_in_band_time",
+    "unconditional_preaim",
+    "kill_pitch_span_p50",
+    "kill_pitch_range_p50",
+    "eligible_kill_windows",
+    "death_pitch_span_p50",
+    "death_pitch_range_p50",
+    "death_windows",
+    "nonkill_pitch_span_p50",
+    "nonkill_pitch_range_p50",
+    "nonkill_windows"
+  ],
+  "views": [
+    "summary_cards",
+    "distributions",
+    "evidence_table",
+    "time_series"
+  ],
+  "order": 1,
+  "presentation": {
+    "scope_selectors": [
+      {
+        "field": "analysis_mode",
+        "label": "分析视图",
+        "default": "kill_window",
+        "options": [
+          {
+            "value": "kill_window",
+            "label": "击杀前垂直瞄准变化"
+          },
+          {
+            "value": "death_window",
+            "label": "死亡前垂直瞄准变化"
+          },
+          {
+            "value": "engagement_window",
+            "label": "序列内无击杀：首枪前瞄准变化"
+          },
+          {
+            "value": "experimental_geometry",
+            "label": "实验：几何头线估计"
+          }
+        ]
+      }
+    ]
+  }
+}

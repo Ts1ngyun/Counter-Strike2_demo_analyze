@@ -1,0 +1,102 @@
+{
+  "view_pitch_delta_p50": {
+    "title": "视角 pitch 变化 P50",
+    "definition": "按序列统计 wrap(pitch_last-pitch_first) 中位数；不是压枪得分",
+    "formula": "按序列统计 wrap(pitch_last-pitch_first) 中位数；不是压枪得分",
+    "unit": "degrees",
+    "sample_unit": "sequence",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "bursts",
+      "shots",
+      "player_states",
+      "weapon_states"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "min_burst_shots": 4,
+      "pose_change_limit": 0.5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.2.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/recoil_control?metric_id=view_pitch_delta_p50"
+  },
+  "descriptive_sequences": {
+    "title": "可描述射击序列",
+    "definition": "满足最小弹数且未受伤/姿态大变/状态缺失的射击序列数",
+    "formula": "满足最小弹数且未受伤/姿态大变/状态缺失的射击序列数",
+    "unit": "count",
+    "sample_unit": "sequence",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "bursts",
+      "shots",
+      "player_states",
+      "weapon_states"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "min_burst_shots": 4,
+      "pose_change_limit": 0.5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.2.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/recoil_control?metric_id=descriptive_sequences"
+  },
+  "actual_impact_dispersion": {
+    "title": "真实落点散布",
+    "definition": "需要验证射线/落点事件；当前 NULL",
+    "formula": "需要验证射线/落点事件；当前 NULL",
+    "unit": "degrees",
+    "sample_unit": "sequence",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "bursts",
+      "shots",
+      "player_states",
+      "weapon_states"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "min_burst_shots": 4,
+      "pose_change_limit": 0.5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.2.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/recoil_control?metric_id=actual_impact_dispersion"
+  },
+  "compensation_residual_rms": {
+    "title": "后坐力补偿残差 RMS",
+    "definition": "只有有效 P、验证 V 与跟枪 T 语义后用 wrap(ΔV+ΔP-ΔT)；当前 NULL",
+    "formula": "只有有效 P、验证 V 与跟枪 T 语义后用 wrap(ΔV+ΔP-ΔT)；当前 NULL",
+    "unit": "degrees",
+    "sample_unit": "sequence",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "bursts",
+      "shots",
+      "player_states",
+      "weapon_states"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "min_burst_shots": 4,
+      "pose_change_limit": 0.5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.2.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/recoil_control?metric_id=compensation_residual_rms"
+  }
+}

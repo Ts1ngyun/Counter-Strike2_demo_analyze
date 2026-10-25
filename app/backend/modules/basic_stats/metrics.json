@@ -1,0 +1,485 @@
+{
+  "flash_assists": {
+    "title": "闪光助攻",
+    "definition": "游戏内助攻且 assistedflash=true",
+    "formula": "游戏内助攻且 assistedflash=true",
+    "unit": "count",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=flash_assists"
+  },
+  "survival_rate": {
+    "title": "存活回合占比",
+    "definition": "回合末存活且该回合没有死亡事件 / 参与回合",
+    "formula": "回合末存活且该回合没有死亡事件 / 参与回合",
+    "unit": "ratio",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=survival_rate"
+  },
+  "opening_difference": {
+    "title": "开局击杀差",
+    "definition": "首杀数 - 首死数",
+    "formula": "首杀数 - 首死数",
+    "unit": "count",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=opening_difference"
+  },
+  "dpr": {
+    "title": "每回合死亡",
+    "definition": "死亡 / 参与完整正式回合数",
+    "formula": "死亡 / 参与完整正式回合数",
+    "unit": "per_round",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=dpr"
+  },
+  "hs_kills": {
+    "title": "爆头击杀",
+    "definition": "对敌 player_death.headshot=true 次数",
+    "formula": "对敌 player_death.headshot=true 次数",
+    "unit": "count",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=hs_kills"
+  },
+  "assists": {
+    "title": "游戏内助攻",
+    "definition": "player_death.assister_steamid 的游戏事件事实",
+    "formula": "player_death.assister_steamid 的游戏事件事实",
+    "unit": "count",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=assists"
+  },
+  "kills": {
+    "title": "对敌击杀",
+    "definition": "正式阶段内击杀不同阵营且非自己的玩家次数",
+    "formula": "正式阶段内击杀不同阵营且非自己的玩家次数",
+    "unit": "count",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=kills"
+  },
+  "opening_kills": {
+    "title": "首杀",
+    "definition": "回合第一笔对敌击杀；同 tick 多笔时不认定唯一首杀",
+    "formula": "回合第一笔对敌击杀；同 tick 多笔时不认定唯一首杀",
+    "unit": "count",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=opening_kills"
+  },
+  "adr_effective": {
+    "title": "已验证有效 ADR",
+    "definition": "验证封顶生命伤害之和 / 参与回合；任一伤害事件未知则 NULL",
+    "formula": "验证封顶生命伤害之和 / 参与回合；任一伤害事件未知则 NULL",
+    "unit": "hp/round",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=adr_effective"
+  },
+  "opening_deaths": {
+    "title": "首死",
+    "definition": "回合第一笔对敌死亡；同 tick 多笔时不认定唯一首死",
+    "formula": "回合第一笔对敌死亡；同 tick 多笔时不认定唯一首死",
+    "unit": "count",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=opening_deaths"
+  },
+  "head_hurt_event_share": {
+    "title": "头部受伤事件占比",
+    "definition": "对敌 hitgroup=head 受伤事件 / 对敌受伤事件数；不是命中子弹占比",
+    "formula": "对敌 hitgroup=head 受伤事件 / 对敌受伤事件数；不是命中子弹占比",
+    "unit": "ratio",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=head_hurt_event_share"
+  },
+  "kd": {
+    "title": "K/D",
+    "definition": "对敌击杀 / 死亡；死亡为零时 NULL",
+    "formula": "对敌击杀 / 死亡；死亡为零时 NULL",
+    "unit": "kills/death",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=kd"
+  },
+  "deaths": {
+    "title": "死亡",
+    "definition": "正式阶段内参与玩家死亡次数；队杀/自杀不计入对敌击杀但计死亡",
+    "formula": "正式阶段内参与玩家死亡次数；队杀/自杀不计入对敌击杀但计死亡",
+    "unit": "count",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=deaths"
+  },
+  "grenade_damage_raw": {
+    "title": "投掷物原始对敌伤害",
+    "definition": "hegrenade/inferno/molotov/incgrenade 对敌原始生命伤害之和；不构成道具评价模块",
+    "formula": "hegrenade/inferno/molotov/incgrenade 对敌原始生命伤害之和；不构成道具评价模块",
+    "unit": "hp",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=grenade_damage_raw"
+  },
+  "kast_local": {
+    "title": "KAST_local",
+    "definition": "有击杀 OR 游戏助攻 OR 存活 OR 死后配置窗内队友击杀原击杀者的回合 / 参与回合",
+    "formula": "有击杀 OR 游戏助攻 OR 存活 OR 死后配置窗内队友击杀原击杀者的回合 / 参与回合",
+    "unit": "ratio",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=kast_local"
+  },
+  "kpr": {
+    "title": "每回合击杀",
+    "definition": "对敌击杀 / 参与完整正式回合数",
+    "formula": "对敌击杀 / 参与完整正式回合数",
+    "unit": "per_round",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=kpr"
+  },
+  "adr_raw": {
+    "title": "原始生命伤害 / 回合",
+    "definition": "对敌 dmg_health 之和 / 参与回合；未保证过量伤害封顶",
+    "formula": "对敌 dmg_health 之和 / 参与回合；未保证过量伤害封顶",
+    "unit": "hp/round",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=adr_raw"
+  },
+  "raw_damage": {
+    "title": "原始生命伤害",
+    "definition": "武器分组下对敌原始 dmg_health 之和",
+    "formula": "武器分组下对敌原始 dmg_health 之和",
+    "unit": "hp",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=raw_damage"
+  },
+  "hs_kill_pct": {
+    "title": "HS-kill%",
+    "definition": "对敌爆头击杀 / 对敌总击杀；显示时乘 100%",
+    "formula": "对敌爆头击杀 / 对敌总击杀；显示时乘 100%",
+    "unit": "ratio",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品实验定义 v1；HS-kill% 参考 HLTV 2015-08-15",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=hs_kill_pct"
+  },
+  "participated_rounds": {
+    "title": "参与回合",
+    "definition": "在 freeze_end 存活、T/CT、非零 SteamID 的完整正式回合",
+    "formula": "在 freeze_end 存活、T/CT、非零 SteamID 的完整正式回合",
+    "unit": "count",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=participated_rounds"
+  },
+  "head_hurt_events_per_fire": {
+    "title": "头部受伤事件 / 开火",
+    "definition": "对敌头部 hurt 事件数 / 开火事件数；可有多弹丸、多目标，不是精确命中率",
+    "formula": "对敌头部 hurt 事件数 / 开火事件数；可有多弹丸、多目标，不是精确命中率",
+    "unit": "events/fire",
+    "sample_unit": "round/event",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "trade_seconds": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=head_hurt_events_per_fire"
+  }
+}

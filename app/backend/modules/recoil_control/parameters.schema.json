@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "min_burst_shots": {
+      "type": "integer",
+      "default": 4,
+      "minimum": 2,
+      "maximum": 20,
+      "title": "min_burst_shots"
+    },
+    "pose_change_limit": {
+      "type": "number",
+      "default": 0.5,
+      "minimum": 0.1,
+      "maximum": 1,
+      "title": "pose_change_limit"
+    }
+  },
+  "required": [
+    "min_burst_shots",
+    "pose_change_limit"
+  ]
+}

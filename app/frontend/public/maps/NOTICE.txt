@@ -1,0 +1,14 @@
+Offline radar assets — provenance
+
+Source: https://github.com/pnxenopoulos/awpy-data/releases/tag/2000935
+Downloaded: 2026-10-24 (Asia/Shanghai)
+Source archive: images.zip (2876805 bytes)
+SHA256: 217dec0b1f2203cc7e9f7bb1b9ef13873665f093203a7df7231b9eb0074b649e
+Archive checksum verified against publisher manifest.json before extraction.
+All bundled PNGs are 1024 x 1024. Coordinates are from the same release's map_data.json.
+Map assets and overview data remain property of Valve Corporation, subject to Valve copyright and terms. The accompanying MIT license covers Awpy-data build scripts, NOT these game assets. No affiliation with or endorsement by Valve is claimed.
+Reference: https://github.com/pnxenopoulos/awpy-data#licensing
+
+The release is CS2 ClientVersion 2000935 / patch 1.41.9.2. This does not assert that an older demo has the same map layout. The UI explicitly labels map-version matching as unverified, and offers world-coordinate mode plus local image calibration. The static radar is not collision geometry and never used to assert visibility.
+
+Transformation: pixelX = (worldX - pos_x) / scale; pixelY = (pos_y - worldY) / scale. No player-relative HUD zoom/rotation is applied. Multi-level images use overview verticalsections altitude ranges.

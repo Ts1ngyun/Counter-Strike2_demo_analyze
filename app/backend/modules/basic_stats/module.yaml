@@ -1,0 +1,59 @@
+{
+  "id": "basic_stats",
+  "version": "1.0.0",
+  "contract_version": 1,
+  "title": "基础比赛统计",
+  "status": "active",
+  "enabled": true,
+  "description": "基础比赛统计",
+  "requires": {
+    "tables": [
+      "events",
+      "rounds",
+      "players"
+    ],
+    "capabilities": {
+      "all_of": [
+        "events"
+      ]
+    }
+  },
+  "optional_capabilities": [
+    "effective_recoil",
+    "visibility_geometry"
+  ],
+  "feature_dependencies": [],
+  "raw_fields": [],
+  "parameters_schema": "parameters.schema.json",
+  "result_schema": "result.schema.json",
+  "metric_ids": [
+    "kills",
+    "deaths",
+    "assists",
+    "flash_assists",
+    "kd",
+    "kpr",
+    "dpr",
+    "hs_kills",
+    "hs_kill_pct",
+    "adr_effective",
+    "adr_raw",
+    "participated_rounds",
+    "survival_rate",
+    "kast_local",
+    "opening_kills",
+    "opening_deaths",
+    "opening_difference",
+    "head_hurt_event_share",
+    "head_hurt_events_per_fire",
+    "grenade_damage_raw",
+    "raw_damage"
+  ],
+  "views": [
+    "summary_cards",
+    "distributions",
+    "evidence_table",
+    "time_series"
+  ],
+  "order": 0
+}

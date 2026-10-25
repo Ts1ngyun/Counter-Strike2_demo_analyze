@@ -1,0 +1,274 @@
+{
+  "aliases": {
+    "ak-47": "ak47",
+    "m4a1-s": "m4a1_silencer",
+    "m4a4": "m4a1",
+    "usp-s": "usp_silencer",
+    "desert eagle": "deagle",
+    "glock-18": "glock",
+    "dual berettas": "elite",
+    "ssg 08": "ssg08",
+    "sg 553": "sg556",
+    "galil ar": "galilar",
+    "mp5-sd": "mp5sd",
+    "r8 revolver": "revolver",
+    "cz75-auto": "cz75a",
+    "pp-bizon": "bizon",
+    "five-seven": "fiveseven",
+    "mag-7": "mag7",
+    "sawed-off": "sawedoff",
+    "scar-20": "scar20",
+    "g3sg1": "g3sg1",
+    "zeus x27": "taser",
+    "zeus": "taser",
+    "ump-45": "ump45",
+    "p2000": "hkp2000"
+  },
+  "profiles": {
+    "g3sg1": {
+      "group": "sniper",
+      "max_speed": 215.0,
+      "scoped_max_speed": 120.0,
+      "full_auto": true,
+      "recovery_gap": 0.35
+    },
+    "galilar": {
+      "group": "rifle",
+      "max_speed": 215.0,
+      "scoped_max_speed": 215.0,
+      "full_auto": true,
+      "recovery_gap": 0.4
+    },
+    "m249": {
+      "group": "machinegun",
+      "max_speed": 195.0,
+      "scoped_max_speed": 195.0,
+      "full_auto": true,
+      "recovery_gap": 0.35
+    },
+    "famas": {
+      "group": "rifle",
+      "max_speed": 220.0,
+      "scoped_max_speed": 220.0,
+      "full_auto": true,
+      "recovery_gap": 0.4
+    },
+    "m4a1": {
+      "group": "rifle",
+      "max_speed": 225.0,
+      "scoped_max_speed": 225.0,
+      "full_auto": true,
+      "recovery_gap": 0.35
+    },
+    "mac10": {
+      "group": "smg",
+      "max_speed": 240.0,
+      "scoped_max_speed": 240.0,
+      "full_auto": true,
+      "recovery_gap": 0.3
+    },
+    "awp": {
+      "group": "sniper",
+      "max_speed": 200.0,
+      "scoped_max_speed": 100.0,
+      "full_auto": false,
+      "recovery_gap": 1.5
+    },
+    "p90": {
+      "group": "smg",
+      "max_speed": 230.0,
+      "scoped_max_speed": 230.0,
+      "full_auto": true,
+      "recovery_gap": 0.3
+    },
+    "aug": {
+      "group": "rifle",
+      "max_speed": 220.0,
+      "scoped_max_speed": 150.0,
+      "full_auto": true,
+      "recovery_gap": 0.4
+    },
+    "mp5sd": {
+      "group": "smg",
+      "max_speed": 235.0,
+      "scoped_max_speed": 220.0,
+      "full_auto": true,
+      "recovery_gap": 0.35
+    },
+    "ak47": {
+      "group": "rifle",
+      "max_speed": 215.0,
+      "scoped_max_speed": 215.0,
+      "full_auto": true,
+      "recovery_gap": 0.4
+    },
+    "xm1014": {
+      "group": "shotgun",
+      "max_speed": 215.0,
+      "scoped_max_speed": 215.0,
+      "full_auto": true,
+      "recovery_gap": 0.35
+    },
+    "glock": {
+      "group": "pistol",
+      "max_speed": 240.0,
+      "scoped_max_speed": 240.0,
+      "full_auto": false,
+      "recovery_gap": 0.4
+    },
+    "bizon": {
+      "group": "smg",
+      "max_speed": 240.0,
+      "scoped_max_speed": 240.0,
+      "full_auto": true,
+      "recovery_gap": 0.35
+    },
+    "mag7": {
+      "group": "shotgun",
+      "max_speed": 225.0,
+      "scoped_max_speed": 225.0,
+      "full_auto": false,
+      "recovery_gap": 0.7
+    },
+    "negev": {
+      "group": "machinegun",
+      "max_speed": 150.0,
+      "scoped_max_speed": 150.0,
+      "full_auto": true,
+      "recovery_gap": 0.35
+    },
+    "sawedoff": {
+      "group": "shotgun",
+      "max_speed": 210.0,
+      "scoped_max_speed": 210.0,
+      "full_auto": false,
+      "recovery_gap": 0.7
+    },
+    "tec9": {
+      "group": "pistol",
+      "max_speed": 240.0,
+      "scoped_max_speed": 240.0,
+      "full_auto": false,
+      "recovery_gap": 0.4
+    },
+    "hkp2000": {
+      "group": "pistol",
+      "max_speed": 240.0,
+      "scoped_max_speed": 240.0,
+      "full_auto": false,
+      "recovery_gap": 0.4
+    },
+    "mp7": {
+      "group": "smg",
+      "max_speed": 220.0,
+      "scoped_max_speed": 220.0,
+      "full_auto": true,
+      "recovery_gap": 0.3
+    },
+    "mp9": {
+      "group": "smg",
+      "max_speed": 240.0,
+      "scoped_max_speed": 240.0,
+      "full_auto": true,
+      "recovery_gap": 0.3
+    },
+    "nova": {
+      "group": "shotgun",
+      "max_speed": 220.0,
+      "scoped_max_speed": 220.0,
+      "full_auto": false,
+      "recovery_gap": 0.7
+    },
+    "p250": {
+      "group": "pistol",
+      "max_speed": 240.0,
+      "scoped_max_speed": 240.0,
+      "full_auto": false,
+      "recovery_gap": 0.4
+    },
+    "scar20": {
+      "group": "sniper",
+      "max_speed": 215.0,
+      "scoped_max_speed": 120.0,
+      "full_auto": true,
+      "recovery_gap": 0.35
+    },
+    "sg556": {
+      "group": "rifle",
+      "max_speed": 210.0,
+      "scoped_max_speed": 150.0,
+      "full_auto": true,
+      "recovery_gap": 0.4
+    },
+    "ssg08": {
+      "group": "sniper",
+      "max_speed": 230.0,
+      "scoped_max_speed": 230.0,
+      "full_auto": false,
+      "recovery_gap": 1.2
+    },
+    "fiveseven": {
+      "group": "pistol",
+      "max_speed": 240.0,
+      "scoped_max_speed": 240.0,
+      "full_auto": false,
+      "recovery_gap": 0.4
+    },
+    "elite": {
+      "group": "pistol",
+      "max_speed": 240.0,
+      "scoped_max_speed": 240.0,
+      "full_auto": false,
+      "recovery_gap": 0.4
+    },
+    "ump45": {
+      "group": "smg",
+      "max_speed": 230.0,
+      "scoped_max_speed": 230.0,
+      "full_auto": true,
+      "recovery_gap": 0.4
+    },
+    "m4a1_silencer": {
+      "group": "rifle",
+      "max_speed": 225.0,
+      "scoped_max_speed": 225.0,
+      "full_auto": true,
+      "recovery_gap": 0.35
+    },
+    "usp_silencer": {
+      "group": "pistol",
+      "max_speed": 240.0,
+      "scoped_max_speed": 240.0,
+      "full_auto": false,
+      "recovery_gap": 0.4
+    },
+    "cz75a": {
+      "group": "pistol",
+      "max_speed": 240.0,
+      "scoped_max_speed": 240.0,
+      "full_auto": true,
+      "recovery_gap": 0.35
+    },
+    "revolver": {
+      "group": "pistol",
+      "max_speed": 180.0,
+      "scoped_max_speed": 220.0,
+      "full_auto": true,
+      "recovery_gap": 0.35
+    },
+    "deagle": {
+      "group": "pistol",
+      "max_speed": 230.0,
+      "scoped_max_speed": 230.0,
+      "full_auto": false,
+      "recovery_gap": 0.7
+    }
+  },
+  "source": {
+    "url": "https://github.com/SteamTracking/GameTracking-CS2/blob/master/game/csgo/pak01_dir/scripts/weapons.vdata",
+    "blob_sha": "a7d1de2127d11aa51d5ac4052a96a7ad99b26dba",
+    "retrieved_utc": "2026-10-23",
+    "rule_url": "https://leetify.com/blog/leetify-stats-glossary/amp/",
+    "patch_match_verified": false
+  }
+}

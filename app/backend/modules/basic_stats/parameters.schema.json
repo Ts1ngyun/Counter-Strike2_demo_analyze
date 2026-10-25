@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "trade_seconds": {
+      "type": "number",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 15,
+      "title": "trade_seconds"
+    }
+  },
+  "required": [
+    "trade_seconds"
+  ]
+}

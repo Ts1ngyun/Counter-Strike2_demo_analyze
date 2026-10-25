@@ -1,0 +1,85 @@
+{
+  "shot_stationary_ready_rate": {
+    "title": "开枪低速达标率",
+    "definition": "武器最大移动速度 × 34% × 参数倍率；相邻地速区间均低于阈值减去边界模糊带时达标",
+    "formula": "低速达标枪数 / 可判定枪数；移动后首枪口径仅纳入连续运动段后的首枪",
+    "unit": "ratio",
+    "sample_unit": "shot",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "shots",
+      "player_states",
+      "weapon_states"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "threshold_scale": 1,
+      "movement_lookback_ms": 600,
+      "movement_min_ms": 80,
+      "movement_enter_multiplier": 1.25,
+      "boundary_margin": 5
+    },
+    "source": "GameTracking-CS2 weapons.vdata；Leetify 34% 参考统计规则",
+    "limitations": "数据快照未按 demo 补丁标定；网络 tick 速度估计。除跑打武器排除 SMG、霰弹枪以及除沙鹰外所有手枪。",
+    "algorithm_version": "1.1.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/stop_shooting?metric_id=shot_stationary_ready_rate",
+    "tooltip": "参考阈值为该武器最大移动速度的 34%（AK-47：215 × 34% = 73.1 units/s，默认倍率 1）。默认边界模糊带 ±5 units/s：两个相邻区间均低于阈值−5 才判达标，跨边界则未知。地速是水平速度估计，不保证子弹准确，也不证明反向按键；开镜、散布及连续射击仍影响精度。"
+  },
+  "movement_to_first_shot_ready_rate": {
+    "title": "移动后首枪达标率",
+    "definition": "武器最大移动速度 × 34% × 参数倍率；相邻地速区间均低于阈值减去边界模糊带时达标",
+    "formula": "低速达标枪数 / 可判定枪数；移动后首枪口径仅纳入连续运动段后的首枪",
+    "unit": "ratio",
+    "sample_unit": "shot",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "shots",
+      "player_states",
+      "weapon_states"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "threshold_scale": 1,
+      "movement_lookback_ms": 600,
+      "movement_min_ms": 80,
+      "movement_enter_multiplier": 1.25,
+      "boundary_margin": 5
+    },
+    "source": "GameTracking-CS2 weapons.vdata；Leetify 34% 参考统计规则",
+    "limitations": "数据快照未按 demo 补丁标定；网络 tick 速度估计。除跑打武器排除 SMG、霰弹枪以及除沙鹰外所有手枪。",
+    "algorithm_version": "1.1.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/stop_shooting?metric_id=movement_to_first_shot_ready_rate",
+    "tooltip": "参考阈值为该武器最大移动速度的 34%（AK-47：215 × 34% = 73.1 units/s，默认倍率 1）。默认边界模糊带 ±5 units/s：两个相邻区间均低于阈值−5 才判达标，跨边界则未知。地速是水平速度估计，不保证子弹准确，也不证明反向按键；开镜、散布及连续射击仍影响精度。"
+  },
+  "reverse_input_evidence": {
+    "title": "反向输入证据",
+    "definition": "无验证网络输入语义；当前 NULL，不从速度方向反推按键",
+    "formula": "无验证网络输入语义；当前 NULL，不从速度方向反推按键",
+    "unit": "count",
+    "sample_unit": "shot",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "shots",
+      "player_states",
+      "weapon_states"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "threshold_scale": 1,
+      "movement_lookback_ms": 600,
+      "movement_min_ms": 80,
+      "movement_enter_multiplier": 1.25,
+      "boundary_margin": 5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/stop_shooting?metric_id=reverse_input_evidence"
+  }
+}

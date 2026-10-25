@@ -1,0 +1,146 @@
+{
+  "flash_detonations": {
+    "title": "闪光引爆次数",
+    "definition": "完整正式回合的 flashbang_detonate 数量",
+    "formula": "完整正式回合的 flashbang_detonate 数量",
+    "unit": "count",
+    "sample_unit": "detonation",
+    "numerator_denominator": "计数无比率分母；coverage=可判定样本/符合条件样本，未知独立保留",
+    "inclusion": "完整正式回合内引爆/死亡事件；有效SteamID",
+    "exclusion": "热身、重开、不完整回合、回合结束后",
+    "field_dependencies": [
+      "flashbang_detonate",
+      "player_blind",
+      "flash_duration",
+      "player_death.assistedflash"
+    ],
+    "time_requirements": "原生事件同 tick + entityid；状态降级要求相邻tick、同存活pawn、时间连续且同tick唯一引爆",
+    "parameters": {
+      "kill_window_seconds": 5
+    },
+    "source": "demo 原生事件与实体状态；产品公开计算规则",
+    "limitations": "缺少player_blind时仅检测新正值变化，并非完整命中人数；未检测不等于0。记录时长不是屏幕全白时长；闪后击杀关联不证明因果。",
+    "algorithm_version": "2.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/utility_analysis?metric_id=flash_detonations"
+  },
+  "enemy_affected_flashes": {
+    "title": "已记录影响敌人的闪",
+    "definition": "至少记录到一名敌方受影响的闪光颗数，未判定闪不当作零",
+    "formula": "至少记录到一名敌方受影响的闪光颗数，未判定闪不当作零",
+    "unit": "count",
+    "sample_unit": "detonation",
+    "numerator_denominator": "计数无比率分母；coverage=可判定样本/符合条件样本，未知独立保留",
+    "inclusion": "完整正式回合内引爆/死亡事件；有效SteamID",
+    "exclusion": "热身、重开、不完整回合、回合结束后",
+    "field_dependencies": [
+      "flashbang_detonate",
+      "player_blind",
+      "flash_duration",
+      "player_death.assistedflash"
+    ],
+    "time_requirements": "原生事件同 tick + entityid；状态降级要求相邻tick、同存活pawn、时间连续且同tick唯一引爆",
+    "parameters": {
+      "kill_window_seconds": 5
+    },
+    "source": "demo 原生事件与实体状态；产品公开计算规则",
+    "limitations": "缺少player_blind时仅检测新正值变化，并非完整命中人数；未检测不等于0。记录时长不是屏幕全白时长；闪后击杀关联不证明因果。",
+    "algorithm_version": "2.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/utility_analysis?metric_id=enemy_affected_flashes"
+  },
+  "enemy_blind_records": {
+    "title": "敌方受影响记录",
+    "definition": "每颗闪记录的敌方受影响人数之和；同一人可跨闪重复",
+    "formula": "每颗闪记录的敌方受影响人数之和；同一人可跨闪重复",
+    "unit": "count",
+    "sample_unit": "detonation",
+    "numerator_denominator": "计数无比率分母；coverage=可判定样本/符合条件样本，未知独立保留",
+    "inclusion": "完整正式回合内引爆/死亡事件；有效SteamID",
+    "exclusion": "热身、重开、不完整回合、回合结束后",
+    "field_dependencies": [
+      "flashbang_detonate",
+      "player_blind",
+      "flash_duration",
+      "player_death.assistedflash"
+    ],
+    "time_requirements": "原生事件同 tick + entityid；状态降级要求相邻tick、同存活pawn、时间连续且同tick唯一引爆",
+    "parameters": {
+      "kill_window_seconds": 5
+    },
+    "source": "demo 原生事件与实体状态；产品公开计算规则",
+    "limitations": "缺少player_blind时仅检测新正值变化，并非完整命中人数；未检测不等于0。记录时长不是屏幕全白时长；闪后击杀关联不证明因果。",
+    "algorithm_version": "2.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/utility_analysis?metric_id=enemy_blind_records"
+  },
+  "teammate_blind_records": {
+    "title": "队友受影响记录",
+    "definition": "每颗闪记录的队友受影响人数之和，不含自己",
+    "formula": "每颗闪记录的队友受影响人数之和，不含自己",
+    "unit": "count",
+    "sample_unit": "detonation",
+    "numerator_denominator": "计数无比率分母；coverage=可判定样本/符合条件样本，未知独立保留",
+    "inclusion": "完整正式回合内引爆/死亡事件；有效SteamID",
+    "exclusion": "热身、重开、不完整回合、回合结束后",
+    "field_dependencies": [
+      "flashbang_detonate",
+      "player_blind",
+      "flash_duration",
+      "player_death.assistedflash"
+    ],
+    "time_requirements": "原生事件同 tick + entityid；状态降级要求相邻tick、同存活pawn、时间连续且同tick唯一引爆",
+    "parameters": {
+      "kill_window_seconds": 5
+    },
+    "source": "demo 原生事件与实体状态；产品公开计算规则",
+    "limitations": "缺少player_blind时仅检测新正值变化，并非完整命中人数；未检测不等于0。记录时长不是屏幕全白时长；闪后击杀关联不证明因果。",
+    "algorithm_version": "2.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/utility_analysis?metric_id=teammate_blind_records"
+  },
+  "self_blind_records": {
+    "title": "自己受影响记录",
+    "definition": "每颗闪记录的自己受影响次数",
+    "formula": "每颗闪记录的自己受影响次数",
+    "unit": "count",
+    "sample_unit": "detonation",
+    "numerator_denominator": "计数无比率分母；coverage=可判定样本/符合条件样本，未知独立保留",
+    "inclusion": "完整正式回合内引爆/死亡事件；有效SteamID",
+    "exclusion": "热身、重开、不完整回合、回合结束后",
+    "field_dependencies": [
+      "flashbang_detonate",
+      "player_blind",
+      "flash_duration",
+      "player_death.assistedflash"
+    ],
+    "time_requirements": "原生事件同 tick + entityid；状态降级要求相邻tick、同存活pawn、时间连续且同tick唯一引爆",
+    "parameters": {
+      "kill_window_seconds": 5
+    },
+    "source": "demo 原生事件与实体状态；产品公开计算规则",
+    "limitations": "缺少player_blind时仅检测新正值变化，并非完整命中人数；未检测不等于0。记录时长不是屏幕全白时长；闪后击杀关联不证明因果。",
+    "algorithm_version": "2.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/utility_analysis?metric_id=self_blind_records"
+  },
+  "flash_assists_recorded": {
+    "title": "游戏记录闪光助攻",
+    "definition": "player_death.assistedflash=true 且 assister 为击杀者同队、受害者敌方",
+    "formula": "player_death.assistedflash=true 且 assister 为击杀者同队、受害者敌方",
+    "unit": "count",
+    "sample_unit": "death_event",
+    "numerator_denominator": "计数无比率分母；coverage=可判定样本/符合条件样本，未知独立保留",
+    "inclusion": "完整正式回合内引爆/死亡事件；有效SteamID",
+    "exclusion": "热身、重开、不完整回合、回合结束后",
+    "field_dependencies": [
+      "flashbang_detonate",
+      "player_blind",
+      "flash_duration",
+      "player_death.assistedflash"
+    ],
+    "time_requirements": "原生事件同 tick + entityid；状态降级要求相邻tick、同存活pawn、时间连续且同tick唯一引爆",
+    "parameters": {
+      "kill_window_seconds": 5
+    },
+    "source": "demo 原生事件与实体状态；产品公开计算规则",
+    "limitations": "缺少player_blind时仅检测新正值变化，并非完整命中人数；未检测不等于0。记录时长不是屏幕全白时长；闪后击杀关联不证明因果。",
+    "algorithm_version": "2.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/utility_analysis?metric_id=flash_assists_recorded"
+  }
+}

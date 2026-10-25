@@ -1,0 +1,7 @@
+{
+  "before_death_seconds": 5,
+  "after_death_seconds": 3,
+  "trade_seconds": 5,
+  "engagement_gap_seconds": 2,
+  "speed_margin": 5
+}

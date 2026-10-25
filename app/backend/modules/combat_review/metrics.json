@@ -1,0 +1,83 @@
+{
+  "review_clips": {
+    "title": "可复盘片段",
+    "definition": "完整回合按死亡窗口及其余开火/伤害事件聚类构造片段；不是独立交战或失误次数",
+    "formula": "符合该标签的片段数量",
+    "unit": "count",
+    "sample_unit": "clip",
+    "numerator_denominator": "计数，无比率分母",
+    "inclusion": "完整正式回合、有效玩家ID",
+    "exclusion": "热身/截断回合",
+    "field_dependencies": [
+      "events",
+      "shots",
+      "player_states"
+    ],
+    "time_requirements": "原生tick；同tick跨类型事件次序未知",
+    "parameters": {
+      "before_death_seconds": 5,
+      "after_death_seconds": 3,
+      "trade_seconds": 5,
+      "engagement_gap_seconds": 2,
+      "speed_margin": 5
+    },
+    "source": "产品复盘排序规则v1",
+    "limitations": "不证明可见性，不自动评价错误；片段可以重叠",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/combat_review"
+  },
+  "death_clips": {
+    "title": "死亡复盘片段",
+    "definition": "完整回合按死亡窗口及其余开火/伤害事件聚类构造片段；不是独立交战或失误次数",
+    "formula": "符合该标签的片段数量",
+    "unit": "count",
+    "sample_unit": "clip",
+    "numerator_denominator": "计数，无比率分母",
+    "inclusion": "完整正式回合、有效玩家ID",
+    "exclusion": "热身/截断回合",
+    "field_dependencies": [
+      "events",
+      "shots",
+      "player_states"
+    ],
+    "time_requirements": "原生tick；同tick跨类型事件次序未知",
+    "parameters": {
+      "before_death_seconds": 5,
+      "after_death_seconds": 3,
+      "trade_seconds": 5,
+      "engagement_gap_seconds": 2,
+      "speed_margin": 5
+    },
+    "source": "产品复盘排序规则v1",
+    "limitations": "不证明可见性，不自动评价错误；片段可以重叠",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/combat_review"
+  },
+  "flagged_clips": {
+    "title": "含情形标签的片段",
+    "definition": "完整回合按死亡窗口及其余开火/伤害事件聚类构造片段；不是独立交战或失误次数",
+    "formula": "符合该标签的片段数量",
+    "unit": "count",
+    "sample_unit": "clip",
+    "numerator_denominator": "计数，无比率分母",
+    "inclusion": "完整正式回合、有效玩家ID",
+    "exclusion": "热身/截断回合",
+    "field_dependencies": [
+      "events",
+      "shots",
+      "player_states"
+    ],
+    "time_requirements": "原生tick；同tick跨类型事件次序未知",
+    "parameters": {
+      "before_death_seconds": 5,
+      "after_death_seconds": 3,
+      "trade_seconds": 5,
+      "engagement_gap_seconds": 2,
+      "speed_margin": 5
+    },
+    "source": "产品复盘排序规则v1",
+    "limitations": "不证明可见性，不自动评价错误；片段可以重叠",
+    "algorithm_version": "1.0.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/combat_review"
+  }
+}

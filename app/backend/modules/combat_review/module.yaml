@@ -1,0 +1,54 @@
+{
+  "id": "combat_review",
+  "version": "1.0.0",
+  "contract_version": 1,
+  "title": "交战与死亡复盘",
+  "status": "active",
+  "enabled": true,
+  "description": "事件支持的复盘片段、时间线及人工标注；不自动判错",
+  "requires": {
+    "tables": [
+      "events",
+      "shots",
+      "player_states"
+    ],
+    "capabilities": {
+      "all_of": [
+        "events",
+        "continuous_time"
+      ]
+    }
+  },
+  "optional_capabilities": [],
+  "feature_dependencies": [
+    "shots"
+  ],
+  "raw_fields": [
+    "X",
+    "Y",
+    "Z",
+    "pitch",
+    "yaw",
+    "armor_value",
+    "active_weapon_name",
+    "active_weapon_ammo",
+    "is_reloading",
+    "flash_duration",
+    "is_airborne",
+    "is_scoped",
+    "weapon_handle",
+    "pawn_handle"
+  ],
+  "parameters_schema": "parameters.schema.json",
+  "result_schema": "result.schema.json",
+  "metric_ids": [
+    "review_clips",
+    "death_clips",
+    "flagged_clips"
+  ],
+  "views": [
+    "summary_cards",
+    "evidence_table"
+  ],
+  "order": 0.5
+}

@@ -1,0 +1,12 @@
+{
+  "window_start_ms": -250,
+  "window_end_ms": -50,
+  "horizontal_cone_deg": 15,
+  "eye_stand": 64,
+  "eye_duck": 46,
+  "head_stand": 64,
+  "head_duck": 46,
+  "head_radius": 4,
+  "flash_exclude_seconds": 0.5,
+  "kill_min_coverage": 0.5
+}

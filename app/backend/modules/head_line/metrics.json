@@ -1,0 +1,374 @@
+{
+  "head_high_time": {
+    "title": "估计偏高时间占比",
+    "definition": "sum(dt where e_vertical>容差) / sum(可评价 dt)",
+    "formula": "sum(dt where e_vertical>容差) / sum(可评价 dt)",
+    "unit": "ratio",
+    "sample_unit": "second",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "player_states",
+      "engagements"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "window_start_ms": -250,
+      "window_end_ms": -50,
+      "horizontal_cone_deg": 15,
+      "eye_stand": 64,
+      "eye_duck": 46,
+      "head_stand": 64,
+      "head_duck": 46,
+      "head_radius": 4,
+      "flash_exclude_seconds": 0.5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "2.1.1",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/head_line?metric_id=head_high_time"
+  },
+  "unconditional_preaim": {
+    "title": "无目标通用预瞄",
+    "definition": "需要地图预期交战点锚点；当前 NULL",
+    "formula": "需要地图预期交战点锚点；当前 NULL",
+    "unit": "ratio",
+    "sample_unit": "second",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "player_states",
+      "engagements"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "window_start_ms": -250,
+      "window_end_ms": -50,
+      "horizontal_cone_deg": 15,
+      "eye_stand": 64,
+      "eye_duck": 46,
+      "head_stand": 64,
+      "head_duck": 46,
+      "head_radius": 4,
+      "flash_exclude_seconds": 0.5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "2.1.1",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/head_line?metric_id=unconditional_preaim"
+  },
+  "head_low_time": {
+    "title": "估计偏低时间占比",
+    "definition": "sum(dt where e_vertical<-容差) / sum(可评价 dt)",
+    "formula": "sum(dt where e_vertical<-容差) / sum(可评价 dt)",
+    "unit": "ratio",
+    "sample_unit": "second",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "player_states",
+      "engagements"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "window_start_ms": -250,
+      "window_end_ms": -50,
+      "horizontal_cone_deg": 15,
+      "eye_stand": 64,
+      "eye_duck": 46,
+      "head_stand": 64,
+      "head_duck": 46,
+      "head_radius": 4,
+      "flash_exclude_seconds": 0.5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "2.1.1",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/head_line?metric_id=head_low_time"
+  },
+  "head_abs_error_p50": {
+    "title": "绝对高度角误差 P50",
+    "definition": "按 dt 加权的 abs(-pitch-atan2(H.z-E.z,distance)) 中位数",
+    "formula": "按 dt 加权的 abs(-pitch-atan2(H.z-E.z,distance)) 中位数",
+    "unit": "degrees",
+    "sample_unit": "second",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "player_states",
+      "engagements"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "window_start_ms": -250,
+      "window_end_ms": -50,
+      "horizontal_cone_deg": 15,
+      "eye_stand": 64,
+      "eye_duck": 46,
+      "head_stand": 64,
+      "head_duck": 46,
+      "head_radius": 4,
+      "flash_exclude_seconds": 0.5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "2.1.1",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/head_line?metric_id=head_abs_error_p50"
+  },
+  "head_abs_error_p90": {
+    "title": "绝对高度角误差 P90",
+    "definition": "按 dt 加权的绝对高度角误差 90 分位",
+    "formula": "按 dt 加权的绝对高度角误差 90 分位",
+    "unit": "degrees",
+    "sample_unit": "second",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "player_states",
+      "engagements"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "window_start_ms": -250,
+      "window_end_ms": -50,
+      "horizontal_cone_deg": 15,
+      "eye_stand": 64,
+      "eye_duck": 46,
+      "head_stand": 64,
+      "head_duck": 46,
+      "head_radius": 4,
+      "flash_exclude_seconds": 0.5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "2.1.1",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/head_line?metric_id=head_abs_error_p90"
+  },
+  "verified_head_in_band_time": {
+    "title": "验证头线时间占比",
+    "definition": "只有验证可见性和头部几何时才计算；当前 NULL",
+    "formula": "只有验证可见性和头部几何时才计算；当前 NULL",
+    "unit": "ratio",
+    "sample_unit": "second",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "player_states",
+      "engagements"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "window_start_ms": -250,
+      "window_end_ms": -50,
+      "horizontal_cone_deg": 15,
+      "eye_stand": 64,
+      "eye_duck": 46,
+      "head_stand": 64,
+      "head_duck": 46,
+      "head_radius": 4,
+      "flash_exclude_seconds": 0.5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "2.1.1",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/head_line?metric_id=verified_head_in_band_time"
+  },
+  "head_in_band_time": {
+    "title": "估计头线范围内时间",
+    "definition": "sum(dt where abs(e_vertical)<=atan2(radius,distance)) / sum(可评价 dt)",
+    "formula": "sum(dt where abs(e_vertical)<=atan2(radius,distance)) / sum(可评价 dt)",
+    "unit": "ratio",
+    "sample_unit": "second",
+    "numerator_denominator": "每个结果携带 numerator/denominator；非比率则为 null；ADR 伤害覆盖率以事件为分母，ADR 数值以回合为分母",
+    "inclusion": "完整正式回合 + 模块对应已知能力；见 ALGORITHMS.md",
+    "exclusion": "热身、重开、回合结束后、不完整回合；另见证据 reason",
+    "field_dependencies": [
+      "player_states",
+      "engagements"
+    ],
+    "time_requirements": "事件 tick 与相邻高频状态分离；无 subtick，原生分辨率在结果中保存",
+    "parameters": {
+      "window_start_ms": -250,
+      "window_end_ms": -50,
+      "horizontal_cone_deg": 15,
+      "eye_stand": 64,
+      "eye_duck": 46,
+      "head_stand": 64,
+      "head_duck": 46,
+      "head_radius": 4,
+      "flash_exclude_seconds": 0.5
+    },
+    "source": "本产品公开计算规则 v1",
+    "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
+    "algorithm_version": "2.1.1",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/head_line?metric_id=head_in_band_time"
+  },
+  "kill_pitch_span_p50": {
+    "title": "垂直变化幅度（P95−P5）",
+    "definition": "每次有效枪械击杀前 1 秒，主副武器连续观测片段的垂直视角变化；场次汇总取窗口中位数。",
+    "formula": "median(P95(pitch)−P5(pitch))",
+    "unit": "degrees",
+    "sample_unit": "kill_window",
+    "numerator_denominator": "非比率；保留 eligible/evaluated/unknown/excluded 样本数",
+    "inclusion": "正式回合对敌枪械击杀，手持主副武器、存活、同武器/实体连续区间；有效时长至少 0.5 秒",
+    "exclusion": "AWP、电击枪、非枪械；霰弹枪躯干单枪致死已验证或致死距离未知均不入主指标",
+    "time_requirements": "击杀前 1 秒，不使用击杀 tick 末状态；不跨缺失或武器切换连接",
+    "parameters": {
+      "kill_min_coverage": 0.5
+    },
+    "algorithm_version": "2.1.1",
+    "tooltip": "击杀前 1 秒内，主副武器连续观测片段的视角上下变化，数值单位为度。小不等于预瞄正确；高低差转瞄、跟枪、压枪都会增加变化。AWP、电击枪排除；霰弹枪致死距离无法可靠判定时暂不计入。仅反映成功击杀窗口，不代表全场。",
+    "limitations": "不是头线成功率；重叠击杀窗口按击杀分别统计；未知保持 null",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/head_line?metric_id=kill_pitch_span_p50"
+  },
+  "kill_pitch_range_p50": {
+    "title": "最大上下差",
+    "definition": "每次有效枪械击杀前 1 秒，主副武器连续观测片段的垂直视角变化；场次汇总取窗口中位数。",
+    "formula": "median(max(pitch)−min(pitch))",
+    "unit": "degrees",
+    "sample_unit": "kill_window",
+    "numerator_denominator": "非比率；保留 eligible/evaluated/unknown/excluded 样本数",
+    "inclusion": "正式回合对敌枪械击杀，手持主副武器、存活、同武器/实体连续区间；有效时长至少 0.5 秒",
+    "exclusion": "AWP、电击枪、非枪械；霰弹枪躯干单枪致死已验证或致死距离未知均不入主指标",
+    "time_requirements": "击杀前 1 秒，不使用击杀 tick 末状态；不跨缺失或武器切换连接",
+    "parameters": {
+      "kill_min_coverage": 0.5
+    },
+    "algorithm_version": "2.1.1",
+    "tooltip": "击杀前 1 秒内，主副武器连续观测片段的视角上下变化，数值单位为度。小不等于预瞄正确；高低差转瞄、跟枪、压枪都会增加变化。AWP、电击枪排除；霰弹枪致死距离无法可靠判定时暂不计入。仅反映成功击杀窗口，不代表全场。",
+    "limitations": "不是头线成功率；重叠击杀窗口按击杀分别统计；未知保持 null",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/head_line?metric_id=kill_pitch_range_p50"
+  },
+  "eligible_kill_windows": {
+    "title": "有效击杀窗口",
+    "definition": "每次有效枪械击杀前 1 秒，主副武器连续观测片段的垂直视角变化；场次汇总取窗口中位数。",
+    "formula": "有效击杀窗口数",
+    "unit": "count",
+    "sample_unit": "kill_window",
+    "numerator_denominator": "非比率；保留 eligible/evaluated/unknown/excluded 样本数",
+    "inclusion": "正式回合对敌枪械击杀，手持主副武器、存活、同武器/实体连续区间；有效时长至少 0.5 秒",
+    "exclusion": "AWP、电击枪、非枪械；霰弹枪躯干单枪致死已验证或致死距离未知均不入主指标",
+    "time_requirements": "击杀前 1 秒，不使用击杀 tick 末状态；不跨缺失或武器切换连接",
+    "parameters": {
+      "kill_min_coverage": 0.5
+    },
+    "algorithm_version": "2.1.1",
+    "tooltip": "击杀前 1 秒内，主副武器连续观测片段的视角上下变化，数值单位为度。小不等于预瞄正确；高低差转瞄、跟枪、压枪都会增加变化。AWP、电击枪排除；霰弹枪致死距离无法可靠判定时暂不计入。仅反映成功击杀窗口，不代表全场。",
+    "limitations": "不是头线成功率；重叠击杀窗口按击杀分别统计；未知保持 null",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/head_line?metric_id=eligible_kill_windows"
+  },
+  "death_pitch_span_p50": {
+    "title": "死亡前垂直幅度 P50",
+    "definition": "死亡前1秒有效窗口；各视图独立分母，不等于预瞄成绩",
+    "formula": "有效窗口幅度的中位数",
+    "unit": "degrees",
+    "sample_unit": "death_window",
+    "numerator_denominator": "非比率；保留 eligible/evaluated/unknown/excluded 样本数",
+    "inclusion": "正式回合对敌枪械击杀，手持主副武器、存活、同武器/实体连续区间；有效时长至少 0.5 秒",
+    "exclusion": "AWP、电击枪、非枪械；霰弹枪躯干单枪致死已验证或致死距离未知均不入主指标",
+    "time_requirements": "击杀前 1 秒，不使用击杀 tick 末状态；不跨缺失或武器切换连接",
+    "parameters": {
+      "kill_min_coverage": 0.5
+    },
+    "algorithm_version": "2.1.1",
+    "tooltip": "击杀前 1 秒内，主副武器连续观测片段的视角上下变化，数值单位为度。小不等于预瞄正确；高低差转瞄、跟枪、压枪都会增加变化。AWP、电击枪排除；霰弹枪致死距离无法可靠判定时暂不计入。仅反映成功击杀窗口，不代表全场。",
+    "limitations": "不是头线成功率；重叠击杀窗口按击杀分别统计；未知保持 null",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/head_line?metric_id=death_pitch_span_p50"
+  },
+  "death_pitch_range_p50": {
+    "title": "死亡前垂直极差 P50",
+    "definition": "死亡前1秒有效窗口；各视图独立分母，不等于预瞄成绩",
+    "formula": "有效窗口幅度的中位数",
+    "unit": "degrees",
+    "sample_unit": "death_window",
+    "numerator_denominator": "非比率；保留 eligible/evaluated/unknown/excluded 样本数",
+    "inclusion": "正式回合对敌枪械击杀，手持主副武器、存活、同武器/实体连续区间；有效时长至少 0.5 秒",
+    "exclusion": "AWP、电击枪、非枪械；霰弹枪躯干单枪致死已验证或致死距离未知均不入主指标",
+    "time_requirements": "击杀前 1 秒，不使用击杀 tick 末状态；不跨缺失或武器切换连接",
+    "parameters": {
+      "kill_min_coverage": 0.5
+    },
+    "algorithm_version": "2.1.1",
+    "tooltip": "击杀前 1 秒内，主副武器连续观测片段的视角上下变化，数值单位为度。小不等于预瞄正确；高低差转瞄、跟枪、压枪都会增加变化。AWP、电击枪排除；霰弹枪致死距离无法可靠判定时暂不计入。仅反映成功击杀窗口，不代表全场。",
+    "limitations": "不是头线成功率；重叠击杀窗口按击杀分别统计；未知保持 null",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/head_line?metric_id=death_pitch_range_p50"
+  },
+  "death_windows": {
+    "title": "死亡前有效窗口数",
+    "definition": "死亡前1秒有效窗口；各视图独立分母，不等于预瞄成绩",
+    "formula": "有效窗口数量",
+    "unit": "count",
+    "sample_unit": "death_window",
+    "numerator_denominator": "非比率；保留 eligible/evaluated/unknown/excluded 样本数",
+    "inclusion": "正式回合对敌枪械击杀，手持主副武器、存活、同武器/实体连续区间；有效时长至少 0.5 秒",
+    "exclusion": "AWP、电击枪、非枪械；霰弹枪躯干单枪致死已验证或致死距离未知均不入主指标",
+    "time_requirements": "击杀前 1 秒，不使用击杀 tick 末状态；不跨缺失或武器切换连接",
+    "parameters": {
+      "kill_min_coverage": 0.5
+    },
+    "algorithm_version": "2.1.1",
+    "tooltip": "击杀前 1 秒内，主副武器连续观测片段的视角上下变化，数值单位为度。小不等于预瞄正确；高低差转瞄、跟枪、压枪都会增加变化。AWP、电击枪排除；霰弹枪致死距离无法可靠判定时暂不计入。仅反映成功击杀窗口，不代表全场。",
+    "limitations": "不是头线成功率；重叠击杀窗口按击杀分别统计；未知保持 null",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/head_line?metric_id=death_windows"
+  },
+  "nonkill_pitch_span_p50": {
+    "title": "无击杀序列首枪前垂直幅度 P50",
+    "definition": "无击杀序列首枪前1秒有效窗口；各视图独立分母，不等于预瞄成绩",
+    "formula": "有效窗口幅度的中位数",
+    "unit": "degrees",
+    "sample_unit": "nonkill_window",
+    "numerator_denominator": "非比率；保留 eligible/evaluated/unknown/excluded 样本数",
+    "inclusion": "正式回合对敌枪械击杀，手持主副武器、存活、同武器/实体连续区间；有效时长至少 0.5 秒",
+    "exclusion": "AWP、电击枪、非枪械；霰弹枪躯干单枪致死已验证或致死距离未知均不入主指标",
+    "time_requirements": "击杀前 1 秒，不使用击杀 tick 末状态；不跨缺失或武器切换连接",
+    "parameters": {
+      "kill_min_coverage": 0.5
+    },
+    "algorithm_version": "2.1.1",
+    "tooltip": "击杀前 1 秒内，主副武器连续观测片段的视角上下变化，数值单位为度。小不等于预瞄正确；高低差转瞄、跟枪、压枪都会增加变化。AWP、电击枪排除；霰弹枪致死距离无法可靠判定时暂不计入。仅反映成功击杀窗口，不代表全场。",
+    "limitations": "不是头线成功率；重叠击杀窗口按击杀分别统计；未知保持 null",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/head_line?metric_id=nonkill_pitch_span_p50"
+  },
+  "nonkill_pitch_range_p50": {
+    "title": "无击杀序列首枪前垂直极差 P50",
+    "definition": "无击杀序列首枪前1秒有效窗口；各视图独立分母，不等于预瞄成绩",
+    "formula": "有效窗口幅度的中位数",
+    "unit": "degrees",
+    "sample_unit": "nonkill_window",
+    "numerator_denominator": "非比率；保留 eligible/evaluated/unknown/excluded 样本数",
+    "inclusion": "正式回合对敌枪械击杀，手持主副武器、存活、同武器/实体连续区间；有效时长至少 0.5 秒",
+    "exclusion": "AWP、电击枪、非枪械；霰弹枪躯干单枪致死已验证或致死距离未知均不入主指标",
+    "time_requirements": "击杀前 1 秒，不使用击杀 tick 末状态；不跨缺失或武器切换连接",
+    "parameters": {
+      "kill_min_coverage": 0.5
+    },
+    "algorithm_version": "2.1.1",
+    "tooltip": "击杀前 1 秒内，主副武器连续观测片段的视角上下变化，数值单位为度。小不等于预瞄正确；高低差转瞄、跟枪、压枪都会增加变化。AWP、电击枪排除；霰弹枪致死距离无法可靠判定时暂不计入。仅反映成功击杀窗口，不代表全场。",
+    "limitations": "不是头线成功率；重叠击杀窗口按击杀分别统计；未知保持 null",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/head_line?metric_id=nonkill_pitch_range_p50"
+  },
+  "nonkill_windows": {
+    "title": "无击杀序列首枪前有效窗口数",
+    "definition": "无击杀序列首枪前1秒有效窗口；各视图独立分母，不等于预瞄成绩",
+    "formula": "有效窗口数量",
+    "unit": "count",
+    "sample_unit": "nonkill_window",
+    "numerator_denominator": "非比率；保留 eligible/evaluated/unknown/excluded 样本数",
+    "inclusion": "正式回合对敌枪械击杀，手持主副武器、存活、同武器/实体连续区间；有效时长至少 0.5 秒",
+    "exclusion": "AWP、电击枪、非枪械；霰弹枪躯干单枪致死已验证或致死距离未知均不入主指标",
+    "time_requirements": "击杀前 1 秒，不使用击杀 tick 末状态；不跨缺失或武器切换连接",
+    "parameters": {
+      "kill_min_coverage": 0.5
+    },
+    "algorithm_version": "2.1.1",
+    "tooltip": "击杀前 1 秒内，主副武器连续观测片段的视角上下变化，数值单位为度。小不等于预瞄正确；高低差转瞄、跟枪、压枪都会增加变化。AWP、电击枪排除；霰弹枪致死距离无法可靠判定时暂不计入。仅反映成功击杀窗口，不代表全场。",
+    "limitations": "不是头线成功率；重叠击杀窗口按击杀分别统计；未知保持 null",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/head_line?metric_id=nonkill_windows"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "kill_window_seconds": {
+      "type": "number",
+      "minimum": 0.1,
+      "maximum": 15,
+      "title": "闪后击杀关联窗口（秒）",
+      "description": "仅描述时间关联；不据此认定闪光助攻或致盲持续到击杀"
+    }
+  },
+  "required": [
+    "kill_window_seconds"
+  ]
+}

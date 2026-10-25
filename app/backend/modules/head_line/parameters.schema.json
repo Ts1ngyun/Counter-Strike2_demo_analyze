@@ -1,0 +1,89 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "window_start_ms": {
+      "type": "number",
+      "default": -250,
+      "minimum": -1000,
+      "maximum": -20,
+      "title": "window_start_ms"
+    },
+    "window_end_ms": {
+      "type": "number",
+      "default": -50,
+      "minimum": -500,
+      "maximum": -1,
+      "title": "window_end_ms"
+    },
+    "horizontal_cone_deg": {
+      "type": "number",
+      "default": 15,
+      "minimum": 1,
+      "maximum": 45,
+      "title": "horizontal_cone_deg"
+    },
+    "eye_stand": {
+      "type": "number",
+      "default": 64,
+      "minimum": 30,
+      "maximum": 90,
+      "title": "eye_stand"
+    },
+    "eye_duck": {
+      "type": "number",
+      "default": 46,
+      "minimum": 20,
+      "maximum": 80,
+      "title": "eye_duck"
+    },
+    "head_stand": {
+      "type": "number",
+      "default": 64,
+      "minimum": 30,
+      "maximum": 90,
+      "title": "head_stand"
+    },
+    "head_duck": {
+      "type": "number",
+      "default": 46,
+      "minimum": 20,
+      "maximum": 80,
+      "title": "head_duck"
+    },
+    "head_radius": {
+      "type": "number",
+      "default": 4,
+      "minimum": 1,
+      "maximum": 12,
+      "title": "head_radius"
+    },
+    "flash_exclude_seconds": {
+      "type": "number",
+      "default": 0.5,
+      "minimum": 0,
+      "maximum": 5,
+      "title": "flash_exclude_seconds",
+      "description": "兼容旧配置，已停用：flash_duration是持久峰值，不能用于推断实时致盲或排除窗口"
+    },
+    "kill_min_coverage": {
+      "type": "number",
+      "minimum": 0.1,
+      "maximum": 0.98,
+      "default": 0.5,
+      "title": "击杀窗口最低有效时长（秒）"
+    }
+  },
+  "required": [
+    "window_start_ms",
+    "window_end_ms",
+    "horizontal_cone_deg",
+    "eye_stand",
+    "eye_duck",
+    "head_stand",
+    "head_duck",
+    "head_radius",
+    "flash_exclude_seconds",
+    "kill_min_coverage"
+  ]
+}

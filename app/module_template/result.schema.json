@@ -1,0 +1,1 @@
+{"type":"object","required":["status","metrics","evidence"],"properties":{"status":{"enum":["succeeded","partial","unsupported"]},"metrics":{"type":"array"},"evidence":{"type":"array"}}}

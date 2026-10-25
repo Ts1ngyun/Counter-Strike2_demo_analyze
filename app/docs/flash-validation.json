@@ -1,0 +1,17 @@
+{
+  "elapsed_seconds": 7.91,
+  "status": "partial",
+  "flashes": 91,
+  "native_blind_available": false,
+  "estimated_flashes": 71,
+  "unknown_flashes": 20,
+  "enemy_records": 73,
+  "teammate_records": 51,
+  "self_records": 28,
+  "game_flash_assists": 7,
+  "flashes_with_kill_association": 13,
+  "metrics": 60,
+  "evidence": 98,
+  "demo_hash": "e454e16b96a15bcaa6dd1fb61f88bfb816dc9da4229ad0b34294b1c1b0de2f43",
+  "source": "read-only old fact states + directly parsed native detonation events; no cache mutation"
+}

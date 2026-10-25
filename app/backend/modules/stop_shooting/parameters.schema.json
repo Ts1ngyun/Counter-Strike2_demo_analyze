@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "threshold_scale": {
+      "type": "number",
+      "default": 1,
+      "minimum": 0.1,
+      "maximum": 3,
+      "title": "threshold_scale"
+    },
+    "movement_lookback_ms": {
+      "type": "number",
+      "default": 600,
+      "minimum": 100,
+      "maximum": 2000,
+      "title": "movement_lookback_ms"
+    },
+    "movement_min_ms": {
+      "type": "number",
+      "default": 80,
+      "minimum": 20,
+      "maximum": 500,
+      "title": "movement_min_ms"
+    },
+    "movement_enter_multiplier": {
+      "type": "number",
+      "default": 1.25,
+      "minimum": 1.01,
+      "maximum": 3,
+      "title": "movement_enter_multiplier"
+    },
+    "boundary_margin": {
+      "type": "number",
+      "default": 5,
+      "minimum": 0,
+      "maximum": 30,
+      "title": "boundary_margin"
+    }
+  },
+  "required": [
+    "threshold_scale",
+    "movement_lookback_ms",
+    "movement_min_ms",
+    "movement_enter_multiplier",
+    "boundary_margin"
+  ]
+}

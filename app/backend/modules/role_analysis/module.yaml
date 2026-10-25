@@ -1,0 +1,21 @@
+{
+  "id": "role_analysis",
+  "version": "1.0.0",
+  "contract_version": 1,
+  "title": "人物定位分析",
+  "status": "planned",
+  "enabled": false,
+  "description": "",
+  "requires": {
+    "tables": [],
+    "capabilities": {}
+  },
+  "optional_capabilities": [],
+  "feature_dependencies": [],
+  "raw_fields": [],
+  "parameters_schema": "parameters.schema.json",
+  "result_schema": "result.schema.json",
+  "metric_ids": [],
+  "views": [],
+  "order": 4
+}
