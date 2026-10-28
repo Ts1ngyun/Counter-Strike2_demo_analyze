@@ -481,5 +481,26 @@
     "limitations": "NULL 不等于零；代理量不等于技能/精准；无官方综合分或职业基线",
     "algorithm_version": "1.0.0",
     "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=head_hurt_events_per_fire"
+  },
+  "round_swing": {
+    "title": "Round Swing",
+    "definition": "下包前击杀与死亡带来的人数优势变化。每次对枪按五五开估算，非实际回合胜率。",
+    "formula": "P(a,b)=0.5*P(a-1,b)+0.5*P(a,b-1); P(0,b)=0, P(a,0)=1; 100*sum(signed delta P)/known rounds",
+    "unit": "pp/round",
+    "sample_unit": "round",
+    "numerator_denominator": "参与回合；Round Swing 仅使用人数与事件顺序可核实的回合",
+    "inclusion": "计分且完整的正式回合",
+    "exclusion": "Round Swing 不含下包同 tick 及之后的交战；非 5v5 开局、同 tick 多次死亡、状态冲突整回合排除",
+    "field_dependencies": [
+      "events",
+      "player_states",
+      "rounds"
+    ],
+    "time_requirements": "tick ordering",
+    "parameters": {},
+    "source": "本地实验模型 preplant-fair-duel-v1",
+    "limitations": "下包前击杀与死亡带来的人数优势变化。每次对枪按五五开估算，非实际回合胜率。",
+    "algorithm_version": "1.2.0",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/basic_stats?metric_id=round_swing"
   }
 }

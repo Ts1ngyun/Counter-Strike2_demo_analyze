@@ -21,6 +21,7 @@ def write_table(root,name,df,part='0000'):
     if len(df): df.to_parquet(d/(str(part)+'.parquet'),index=False)
 
 def make_rounds(events,max_tick):
+    events=clean(events)
     starts=sorted([e for e in events if e['event_name']=='round_start'],key=lambda e:e['tick'])
     ends=[e for e in events if e['event_name']=='round_end']
     freezes=[e for e in events if e['event_name']=='round_freeze_end']
@@ -31,16 +32,54 @@ def make_rounds(events,max_tick):
         fs=[e for e in freezes if s['tick']<=e['tick']<next_t]
         es=[e for e in ends if s['tick']<e['tick']<next_t and e.get('winner') is not None]
         end=es[0] if es else None; freeze=fs[0] if fs else None
-        warm=s.get('is_warmup_period') is not False
+        # Missing flags are unknown, not proof of warmup or official play.
+        flag=s.get('is_warmup_period')
+        warm=flag in (True,1)
+        warm_unknown=flag not in (True,False,0,1)
+        live_events=[e for e in events if freeze and end and freeze['tick']<=e['tick']<=end['tick']]
+        warm=warm or any(e.get('is_warmup_period') in (True,1) for e in live_events)
         # cs_pre_restart is also emitted between ordinary rounds. Only an
         # interruption before a valid round_end invalidates a round.
         restart=any(s['tick']<t<(end['tick'] if end else next_t) for t in restarts)
-        phase='warmup' if warm else 'restart' if restart else 'official' if freeze and end else 'incomplete'
+        phase='warmup' if warm else 'restart' if restart else 'unknown' if warm_unknown else 'official' if freeze and end else 'incomplete'
         rounds.append({'round_id':f'r{i+1:03d}','raw_round':s.get('round'),'raw_total_rounds':s.get('total_rounds_played'),
          'tick':s['tick'],'start_tick':s['tick'],'live_tick':freeze['tick'] if freeze else None,'end_tick':end['tick'] if end else next_t-1,'next_tick':next_t,
-         'phase':phase,'complete':phase=='official','winner':end.get('winner') if end else None,'reason':end.get('reason') if end else None,
+         'phase':phase,'complete':phase=='official','exclusion_reason':None if phase=='official' else phase,
+         'classification_version':'3',
+         'winner':end.get('winner') if end else None,'reason':end.get('reason') if end else None,
          'source_start':s['event_id'],'source_end':end['event_id'] if end else None})
     return rounds
+
+def score_total(rows):
+    """Sum both sides, independent of halftime swaps; require consistent data."""
+    sides={2:set(),3:set()}
+    for row in clean(rows):
+        team=row.get('team_num')
+        if team not in sides:continue
+        value=row.get('team_rounds_total')
+        if not isinstance(value,(int,float)) or not np.isfinite(value) or value<0 or int(value)!=value:
+            return None
+        sides[team].add(int(value))
+    return sum(next(iter(v)) for v in sides.values()) if all(len(v)==1 for v in sides.values()) else None
+
+
+def finalize_round_scores(rounds,snapshots):
+    """Only a settled +1 score change can admit a complete official round."""
+    for r in rounds:
+        snap=snapshots.get(r['round_id'],{})
+        before,after=snap.get('before'),snap.get('after')
+        delta=after-before if before is not None and after is not None else None
+        r.update(score_before_total=before,score_after_total=after,score_delta=delta,
+                 score_observation_tick=snap.get('after_tick'))
+        if r['phase'] in ('official','unknown') and r.get('live_tick') is not None and r.get('source_end'):
+            settled=snap.get('after_tick',-1)>=r['end_tick']
+            r['phase']=('score_unknown' if delta is None or not settled else
+                        'official' if delta==1 else 'unscored' if delta==0 else
+                        'score_reset' if delta<0 else 'score_ambiguous')
+        r['complete']=r['phase']=='official'
+        r['exclusion_reason']=None if r['complete'] else r['phase']
+    return rounds
+
 
 def extract(source,root,demo_hash,requested_fields,progress,cancel):
     root=Path(root);root.mkdir(parents=True,exist_ok=True)
@@ -87,7 +126,7 @@ def extract(source,root,demo_hash,requested_fields,progress,cancel):
         adjacent=g.tick.diff().eq(1)&g.tick.diff().groupby(ordered.steamid).shift(1).eq(1)
         velocity_alignment={'probe_start_tick':probe_start,'probe_rows':int(adjacent.sum()),'current_interval_mean_L1_error':float(((ordered.velocity_X-dx).abs()+(ordered.velocity_Y-dy).abs())[adjacent].mean()),'previous_interval_mean_L1_error':float(((ordered.velocity_X-lagx).abs()+(ordered.velocity_Y-lagy).abs())[adjacent].mean())}
     # Probe existence, non-nullness and type independently from semantic validation.
-    caps={};fields={};counts={};invalid_counts={};total=0;time_errors=[];name_history={};final=None;rosters={}
+    caps={};fields={};counts={};invalid_counts={};total=0;time_errors=[];name_history={};final=None;rosters={};score_snapshots={}
     for prop in props+['aim_punch_angle','velocity_X','velocity_Y']:
         col=probe[prop] if prop in probe else None
         caps[prop]={'column_present':col is not None,'non_null':int(col.notna().sum()) if col is not None else 0,'probe_rows':len(probe),
@@ -110,7 +149,14 @@ def extract(source,root,demo_hash,requested_fields,progress,cancel):
         df['round_id']=None
         for r in rounds:
             df.loc[df.tick.between(r['start_tick'],r['next_tick']-1),'round_id']=r['round_id']
+            observed=df[df.tick.between(r['start_tick'],r['next_tick']-1)]
+            if not observed.empty:
+                snap=score_snapshots.setdefault(r['round_id'],{})
+                latest=observed[observed.tick==observed.tick.max()]
+                snap['after']=score_total(latest.to_dict('records'))
+                snap['after_tick']=int(observed.tick.max())
             if r['live_tick'] is not None and lo<=r['live_tick']<=hi:
+                score_snapshots.setdefault(r['round_id'],{})['before']=score_total(df[df.tick==r['live_tick']].to_dict('records'))
                 rosters[r['round_id']]=df[df.tick==r['live_tick']][['player_id','name','team_num','team_clan_name','is_alive']].to_dict('records')
         g=df.groupby('player_id',sort=False);dt=g.game_time.diff();tk=g.tick.diff();ok=(tk==1)&dt.notna()
         time_errors.extend((dt[ok]-tick_s).abs().nlargest(4).tolist());all_time_deltas.extend(dt[ok].head(10).tolist())
@@ -142,6 +188,10 @@ def extract(source,root,demo_hash,requested_fields,progress,cancel):
       'movement_accuracy':{'usable':False,'reason':'accuracy_penalty 含连续射击等混合因素，不等于纯移动误差'}})
     players['name_history_json']=players.player_id.map(lambda x:json.dumps(name_history.get(x,{}),ensure_ascii=False));write_table(root,'players',players)
     meta={'demo_hash':demo_hash,'source_name':Path(source).name,'size_bytes':Path(source).stat().st_size,'header':header,'parser':{'name':'demoparser2','version':parser_version},'normalization_version':VERSION,'protocol':header.get('network_protocol'),'container':container,'tick_seconds':tick_s,'state_rows':total,'extracted_fields':supported,'event_inventory':{'requested':EVENTS,'available':available_events,'returned':[n for n,df in parsed],'counts':{n:len(df) for n,df in parsed},'extraction_complete':True},'final_state':final,'time_contract':{'command_tick':'commands.tick','demo_tick':'player_states.tick; alias to command tick not server tick','net_tick':None,'game_time':'parser-derived time with origin offset; not recording relative','demo_time':'tick * FileInfo interval, subject to continuity checks','subtick':None,'state_semantics':'end-of-tick','event_order':'index within each event type, cross-type order unknown','command_offsets':'available only in command table; cannot map an entity/event to a byte offset'}}
+    finalize_round_scores(rounds,score_snapshots)
+    for r in rounds:
+        event_df.loc[event_df.round_id==r['round_id'],'in_live_round']=bool(r['complete']) & event_df.loc[event_df.round_id==r['round_id'],'tick'].between(r['live_tick'] if r['live_tick'] is not None else -1,r['end_tick'])
+    write_table(root,'events',event_df)
     for r in rounds:r['participants_json']=json.dumps(clean(rosters.get(r['round_id'],[])),ensure_ascii=False)
     write_table(root,'rounds',pd.DataFrame(rounds))
     save(root/'fields.json',enrich_catalog(fields,VERSION,tick_s));save(root/'capabilities.json',caps);save(root/'demos.json',meta)

@@ -1,10 +1,11 @@
+> **1.0.1**：使用外层 START.cmd / STOP.cmd。首次需要 Python 3.12（64 位）及 Node.js 24；参见外层使用说明.txt。
+
 # CS2 Demo Evidence Lab
 
 双击 **start.cmd**，打开 **http://127.0.0.1:8765**。双击 **stop.cmd** 停止。
 
 当前开发电脑已准备好依赖；合作伙伴收到源码包后，先安装 Python 3.12（64 位）和 Node.js 24，再运行 setup.cmd，完成后运行 start.cmd。源码包不是免安装 EXE。
 
-**合作伙伴先读：[交接与模块接入规范](docs/PARTNER_HANDOFF.md)** · [新增模块需求/交付模板](docs/MODULE_HANDOFF_TEMPLATE.md)。
 
 | 模块 | 当前交付 |
 |---|---|

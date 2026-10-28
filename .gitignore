@@ -16,3 +16,12 @@ demo_output/
 .env.*
 *.pem
 *.key
+
+.publish-v*/
+.pytest_cache/
+
+# Local-only handoff documents; distribute in the ZIP, not on GitHub.
+app/docs/TEAM_PLAN_*.md
+app/docs/INTEGRATION_API_*.md
+app/docs/REPLAY_3D_CONTRACT.md
+app/docs/*HANDOFF*.md

@@ -1,0 +1,42 @@
+/* Page-level layout, job progress and footer. Shell chrome lives in chrome.css. */
+.page > .callout:first-child { margin-top: 0; }
+.page-loading { display: grid; place-items: center; padding: 70px 20px; }
+.page-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 16px; flex-wrap: wrap; }
+.section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin: 22px 0 12px; }
+.section-head:first-child { margin-top: 0; }
+.section-head h2, .section-head h3 { margin: 0; }
+.section-head p { margin: 3px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.section-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.count-badge { display: inline-block; margin-left: 7px; padding: 1px 7px; border-radius: var(--r-pill); background: var(--surface-2); border: 1px solid var(--border); color: var(--text-2); font: 11.5px var(--font-mono); vertical-align: 2px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; border-radius: var(--r-pill); border: 1px solid var(--border); background: var(--surface-2); font-size: 12px; }
+.chip button { display: grid; place-items: center; width: 18px; min-width: 18px; min-height: 18px; padding: 0; border: 0; background: transparent; color: var(--muted); border-radius: 50%; }
+.chip button:hover { background: var(--danger-soft); color: var(--danger); }
+.callout-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+
+.running-panel { border-color: var(--info-border); background: linear-gradient(150deg, var(--info-soft), var(--surface) 70%); }
+.running-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.running-head h2 { margin: 0; }
+.running-head p { margin: 2px 0 0; color: var(--text-2); font-size: 13px; }
+.running-head button { margin-left: auto; flex-shrink: 0; }
+.running-detail {
+  max-height: 180px; overflow: auto; margin: 10px 0;
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+}
+.failed-panel { border-color: var(--danger-border); background: linear-gradient(150deg, var(--danger-soft), var(--surface) 75%); }
+
+.app-footer {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  margin-top: 40px; padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--faint); font-size: 11px;
+}
+.app-footer span:last-child { font-family: var(--font-mono); }
+.export-select { max-width: 160px; min-height: 36px; font-size: 12px; }
+
+@media (max-width: 760px) {
+  .section-head { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .section-actions { width: 100%; }
+  .app-footer { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .running-head { flex-wrap: wrap; }
+  .running-head button { margin-left: 0; }
+}

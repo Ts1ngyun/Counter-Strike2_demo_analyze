@@ -1,1 +1,28 @@
-.archive-form{display:flex;align-items:flex-end;flex-wrap:wrap;gap:14px;margin:18px 0}.archive-form label{flex:1;min-width:180px}.archive-form textarea{font:inherit;padding:9px;background:var(--field);color:var(--text);border:1px solid var(--border);border-radius:6px}.archive-player-picker{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}.archive-player-picker label{display:flex;flex-direction:row;align-items:center;padding:12px;border:1px solid var(--border);border-radius:8px;cursor:pointer;color:var(--text)}.archive-player-picker small{display:block;margin-top:5px}.profiles-workspace details{margin:14px 0}.profiles-workspace td button{margin:3px;font-size:12px}.profiles-workspace .row select{max-width:65%}.archive-chart svg{overflow:visible}.profiles-workspace .primary{white-space:normal}.profiles-workspace>p{max-width:900px}@media(max-width:720px){.profiles-workspace .row select{max-width:100%;width:100%}.archive-form label{min-width:100%}}
+/* Personal archive, multi-ID trend and snapshot viewer. */
+.archive-form { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 12px; margin: 14px 0; }
+.archive-form label { flex: 1; min-width: 180px; }
+.archive-form textarea { min-height: 70px; }
+.archive-player-picker { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 8px; margin: 10px 0 14px; }
+.archive-player-picker label {
+  display: flex; flex-direction: row; align-items: center; gap: 8px;
+  padding: 9px 11px; border: 1px solid var(--border); border-radius: var(--r-sm);
+  cursor: pointer; color: var(--text); background: var(--field); font-size: 12px;
+}
+.archive-player-picker label:has(input:checked) { border-color: var(--accent-border); background: var(--accent-soft); }
+.archive-player-picker small { display: block; margin-top: 2px; font-size: 10px; }
+.profiles-workspace > p { max-width: 900px; }
+.profiles-workspace details { margin: 12px 0; }
+.profiles-workspace td button { margin: 2px; font-size: 11.5px; padding: 4px 9px; }
+.profiles-workspace .row select { max-width: 65%; }
+.archive-chart svg { overflow: visible; }
+.profiles-workspace .primary { white-space: normal; }
+.profiles-workspace .panel { margin: 14px 0; }
+@media (max-width: 720px) {
+  .profiles-workspace .row { flex-wrap: wrap; }
+  .profiles-workspace .row select { max-width: 100%; width: 100%; }
+  .archive-form label { min-width: 100%; }
+  .archive-player-picker { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 430px) {
+  .archive-player-picker { grid-template-columns: 1fr; }
+}

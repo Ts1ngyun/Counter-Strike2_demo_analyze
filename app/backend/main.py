@@ -11,13 +11,14 @@ from .core.registry import discover
 from .core.pipeline import validated_config
 from .core.context import AnalysisContext,TABLES
 from .services.results import load_result
+from .version import APP_VERSION
 
 @asynccontextmanager
 async def lifespan(app):
     scheduler=jobs.Scheduler();scheduler.start();app.state.scheduler=scheduler
     yield
     scheduler.close()
-app=FastAPI(title='CS2 Demo Evidence Lab',lifespan=lifespan)
+app=FastAPI(title='CS2 Demo Evidence Lab',version=APP_VERSION,lifespan=lifespan)
 
 @app.middleware('http')
 async def local_only(request,call_next):
@@ -42,7 +43,7 @@ def public_job(j):
     return out
 
 @app.get('/api/health')
-def health():return {'ok':True,'local_only':True,'version':'1.0.0'}
+def health():return {'ok':True,'local_only':True,'version':APP_VERSION}
 @app.post('/api/shutdown')
 def shutdown():
     app.state.scheduler.close()
@@ -92,6 +93,15 @@ def result(jid:str):
         modules[mid]={**{k:v for k,v in m.items() if k not in ('evidence','metrics')},'evidence_count':len(m.get('evidence',[])),
             'metrics':[{**metric,'evidence_count':len(metric['evidence_refs']),'evidence_refs':metric['evidence_refs'][:5]} for metric in m.get('metrics',[])]}
     return {**r,'modules':modules}
+@app.get('/api/jobs/{jid}/round-stats')
+def round_stats(jid:str,round_id:str|None=None,player:str|None=None):
+    details=result_of(jid)['modules'].get('basic_stats',{}).get('details',{})
+    if 'round_stats_schema_version' not in details:
+        raise HTTPException(409,'该结果未包含单回合统计，请启用基础统计后重新分析')
+    rows=details['round_stats']
+    rows=[r for r in rows if (round_id is None or r['round_id']==round_id) and (player is None or r['player_id']==player)]
+    return {'schema_version':1,'total':len(rows),'rows':rows}
+
 @app.get('/api/jobs/{jid}/evidence/{module}')
 def evidence(jid:str,module:str,player:str|None=None,round_id:str|None=None,weapon:str|None=None,judgement:str|None=None,pose:str|None=None,team:str|None=None,distance:str|None=None,metric_id:str|None=None,weapon_set:str|None=None,analysis_mode:str|None=None,attack_input_status:str|None=None,offset:int=0,limit:int=50):
     r=result_of(jid);m=r['modules'].get(module)

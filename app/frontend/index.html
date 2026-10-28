@@ -1,1 +1,19 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>CS2 · Demo Evidence Lab</title><script>try{const p=JSON.parse(localStorage.getItem('demo-lab.appearance.v1')||'{}');document.documentElement.dataset.theme=['light','dark'].includes(p?.theme)?p.theme:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.density=p?.density==='compact'?'compact':'comfortable'}catch{document.documentElement.dataset.theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}</script></head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="color-scheme" content="light dark"/><title>CS2 · Demo Evidence Lab</title><script>
+try{
+  var p=JSON.parse(localStorage.getItem('demo-lab.appearance.v2')||'null')||JSON.parse(localStorage.getItem('demo-lab.appearance.v1')||'null')||{};
+  var t=['light','dark'].indexOf(p.theme)>=0?p.theme:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  var palettes=['terminal','orange','blue','violet','teal','magenta','custom'];
+  var d=document.documentElement;
+  d.dataset.theme=t;
+  d.dataset.palette=palettes.indexOf(p.palette)>=0?p.palette:'terminal';
+  d.dataset.density=p.density==='compact'?'compact':'comfortable';
+  d.dataset.glass=p.glass===false?'off':'on';
+  if(p.palette==='custom'&&p.custom&&p.custom[t]){
+    var c=p.custom[t];
+    ['accent','accent-2','bg','surface','text'].forEach(function(k){
+      var key={accent:'accent','accent-2':'accent2',bg:'bg',surface:'surface',text:'text'}[k];
+      if(typeof c[key]==='string') d.style.setProperty('--'+k,c[key]);
+    });
+  }
+}catch(e){document.documentElement.dataset.theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+</script></head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>

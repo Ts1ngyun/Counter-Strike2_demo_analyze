@@ -8,7 +8,8 @@ from zipfile import ZIP_DEFLATED, ZipFile
 
 APP = Path(__file__).resolve().parents[1]
 ROOT_FILES = {'.gitignore', 'README.md', 'requirements.lock', 'setup.cmd',
-              'setup.ps1', 'start.cmd', 'start.ps1', 'stop.cmd', 'stop.ps1'}
+              'setup.ps1', 'start.cmd', 'start.ps1', 'stop.cmd', 'stop.ps1', 'VERSION'}
+OUTER_FILES = {'START.cmd', 'STOP.cmd', '使用说明.txt'}
 SOURCE_DIRS = {'backend', 'tests', 'module_template'}
 EXCLUDED_PARTS = {'__pycache__', 'node_modules', '.venv', 'data', '.pytest_cache',
                   '.git', '.npm-cache', '.pip-cache'}
@@ -18,14 +19,15 @@ def included(path):
     rel = path.relative_to(APP)
     if any(p in EXCLUDED_PARTS for p in rel.parts) or path.is_symlink():
         return False
-    if path.suffix in {'.pyc', '.pyo', '.dem'}:
+    if path.suffix.lower() in {'.pyc', '.pyo', '.dem', '.sqlite', '.db', '.log', '.zip'}:
         return False
     if len(rel.parts) == 1:
         return rel.name in ROOT_FILES
     if rel.parts[0] in SOURCE_DIRS:
         return path.suffix in {'.py', '.json', '.yaml', '.yml', '.md'} or rel.name == '.gitkeep'
     if rel.parts[0] == 'docs':
-        return path.suffix == '.md' or rel.name in {'test-results.txt','ui-evidence.png','revision-ui-stop.png','revision-validation.json','ui-appearance-light.png','ui-appearance-dark.png','replay-ui-map.png','review-ui-flash.png','review-ui-combat.png','review-ui-profiles.png','review-v3-validation.json','flash-validation.json'}
+        return (path.suffix == '.md' or rel.name.startswith('ui-redesign-') or
+                rel.name in {'glass-ui-preview.png','terminal-ui-preview.png','openapi.json','test-results.txt','ui-evidence.png','revision-ui-stop.png','revision-validation.json','ui-appearance-light.png','ui-appearance-dark.png','replay-ui-map.png','review-ui-flash.png','review-ui-combat.png','review-ui-profiles.png','review-v3-validation.json','flash-validation.json'})
     if rel.parts[0] == 'scripts':
         return path.suffix == '.py' and rel.name != 'probe.py'
     if rel.parts[0] == 'frontend':
@@ -50,9 +52,20 @@ def main():
         raise SystemExit(f'Missing required files: {sorted(missing)}')
     args.output_dir.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
-    target = args.output_dir / f'CS2-Demo-Lab-source-{stamp}.zip'
+    version = (APP/'VERSION').read_text(encoding='utf-8').strip()
+    import re
+    if not re.fullmatch(r'\d+\.\d+\.\d+', version):
+        raise SystemExit('Invalid release version')
+    target = args.output_dir / f'CS2-Demo-Lab-{version}.zip'
+    for name in OUTER_FILES:
+        if not (APP.parent/name).is_file():
+            raise SystemExit(f'Missing outer launcher/readme: {name}')
     entries = []
     with ZipFile(target, 'x', compression=ZIP_DEFLATED, compresslevel=9) as archive:
+        for name in sorted(OUTER_FILES):
+            body = (APP.parent/name).read_bytes()
+            archive.writestr(name, body)
+            entries.append({'path':name,'bytes':len(body),'sha256':hashlib.sha256(body).hexdigest()})
         for path in files:
             name = 'app/' + path.relative_to(APP).as_posix()
             body = path.read_bytes()
@@ -60,7 +73,7 @@ def main():
             entries.append({'path': name, 'bytes': len(body),
                             'sha256': hashlib.sha256(body).hexdigest()})
         archive.writestr('app/SOURCE_MANIFEST.json', json.dumps({
-            'format_version': 1, 'created_utc': stamp,
+            'format_version': 2, 'version':version, 'created_utc': stamp,
             'package_kind': 'source; install dependencies before running',
             'files': entries,
         }, ensure_ascii=False, indent=2))

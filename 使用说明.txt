@@ -1,0 +1,18 @@
+﻿CS2 Demo Lab 1.0.1
+
+1. 先把整个 ZIP 解压到一个普通文件夹，不要直接在压缩包里运行。
+2. 双击 START.cmd 启动；浏览器会打开 http://127.0.0.1:8765。
+3. 双击 STOP.cmd 关闭后台服务。只关浏览器不会停止后台。
+
+这是源码整合包，不是免安装 EXE。首次使用需安装 64 位 Python 3.12 和 Node.js 24，并加入 PATH。
+官方下载：Python https://www.python.org/downloads/windows/ ，Node.js https://nodejs.org/en/download 。
+安装 Python 时勾选 Add python.exe to PATH；Node.js 安装包自带 npm。安装后重新打开终端，运行 python --version、node --version、npm.cmd --version 检查。
+缺少运行环境时，START.cmd 会调用安装脚本；首次安装依赖需要联网。安装失败可运行 app\setup.cmd 重试。
+出现 SSL 或 npm 找不到的错误时，检查网络、代理和 Node.js 安装，不要关闭证书校验。
+依赖安装完成后，demo 分析可离线使用。不需要管理员权限。
+
+文件夹外面只放日常操作入口；app 内是程序和开发文件，不要单独移动 START.cmd 或 STOP.cmd。
+包内不含任何 demo、历史分析、个人存档、缓存或浏览器背景。
+使用后产生的数据在 app\data。升级时先关闭旧版本并备份这个目录，再按开发文档迁移；不要直接删它当作清缓存。
+自定义配色和背景存在当前浏览器中，不随 ZIP 迁移。
+

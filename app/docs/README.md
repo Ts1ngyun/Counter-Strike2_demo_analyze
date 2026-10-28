@@ -28,7 +28,7 @@
 |---|---|
 | 基础统计 `basic_stats` | 击杀、死亡、助攻、伤害与回合参与等；保留证据和未知覆盖 |
 | 急停 `stop_shooting` | 默认移动后首枪达标率，可切换开枪低速达标率；全武器/排除跑打武器视图 |
-| 交战瞄准变化 `head_line` v2.1.1 | 击杀、死亡、非击杀射击首枪前窗口分开统计；保留指定武器排除和未知规则 |
+| 交战瞄准变化 `head_line` v2.2.0 | 击杀、死亡、非击杀射击首枪前窗口分开统计；保留指定武器排除和未知规则 |
 | 连续射击与压枪 `recoil_control` v1.2.0 | 视角轨迹、攻击输入、逐弹伤害关联及目标运动对照；不提供未验证的压枪准度 |
 | 交战与死亡复盘 `combat_review` v1.0.0 | 事件支持的情形标签、优先复查片段、时间线，以及人工判断/备注/收藏 |
 | 闪光弹 `utility_analysis` v2.0.0 | 逐颗闪的敌方/队友/自身影响，游戏闪助和闪后击杀时间关联；目前只做闪光弹 |
@@ -45,7 +45,7 @@
 
 雷达资源版本与 demo 地图版本是否完全匹配尚未验证，只作视觉参考，不用于遮挡、烟雾或可见性判定。详见 [REPLAY.md](REPLAY.md)。
 
-右上角“显示设置”提供浅色、深色、跟随系统和舒适/紧凑布局。默认隐藏完整的 100% 覆盖率，覆盖不足及未知仍保留；方法说明、样本明细和技术信息可选显示，偏好保存在浏览器。
+右上角“主题”打开新的主题与显示面板：五套撞色主题、明亮/暗黑/跟随系统、浅色/深色分别保存的自定义颜色，以及液态玻璃、减少动效和舒适/紧凑布局。核心指标均有面向普通用户的三层解释。默认隐藏完整的 100% 覆盖率，覆盖不足及未知仍保留；方法说明、样本明细和技术信息可选显示，偏好保存在浏览器。详见 [UI_REDESIGN.md](UI_REDESIGN.md) 与 [UI_APPEARANCE.md](UI_APPEARANCE.md)。
 
 ## 命令行与检查
 
@@ -77,7 +77,7 @@ npm.cmd run build
 - `backend/routers/`：回放帧/书签、人工交战标注、个人存档接口；`backend/services/results.py` 提供只读结果复用。
 - `data/uploads/`、`facts/`、`module_cache/`、`results/`：应用拥有的数据；`jobs.sqlite` 存储任务、配置和模块结果索引。
 - `data/review/annotations.sqlite3`：交战人工标注；`data/replay/`：按 demo 保存的书签；`data/profiles.sqlite`：个人档案、快照历史和趋势摘要。
-- `frontend/`：中文通用模块渲染器与交战、闪光、回放、存档组件；`frontend/public/maps/` 为内置雷达与来源清单。
-- `docs/ALGORITHMS.md`、`CONTRACTS.md`、`SOURCES.md`：算法、字段/时间契约与来源；`VALIDATION.md` 为早期验收记录，新版增量另见 `COMBAT_REVIEW.md`、`REPLAY.md`、`review-v3-validation.json` 和 `flash-validation.json`。
+- `frontend/`：React/TypeScript 应用；`src/app` 外壳与任务状态，`src/views` 页面，`src/theme` 设计 token 与偏好，`src/explain` 指标词典与三层解释，`src/ui` 统一组件；`frontend/public/maps/` 为内置雷达与来源清单。
+- `docs/ALGORITHMS.md`、`CONTRACTS.md`、`SOURCES.md`：算法、字段/时间契约与来源；界面设计见 `UI_REDESIGN.md`，主题维护见 `UI_APPEARANCE.md`，本轮验证见 `UI_REDESIGN_VALIDATION.md`。`VALIDATION.md` 为早期验收记录，新版增量另见 `COMBAT_REVIEW.md`、`REPLAY.md`、`review-v3-validation.json` 和 `flash-validation.json`。
 
 本期没有三维回放、TrueView 预测重建、完整可见性/烟雾模型、职业基线、综合能力分，以及人物定位、选位两个规划模块的业务算法。交接、继续开发与源码打包见 [PARTNER_HANDOFF.md](PARTNER_HANDOFF.md) 和 [EXTENDING.md](EXTENDING.md)。

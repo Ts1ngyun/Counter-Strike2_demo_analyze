@@ -1,5 +1,6 @@
 """Kill-window vertical aim description. No head placement score is inferred."""
 import math
+from numbers import Real
 from collections import Counter, defaultdict
 import numpy as np
 from ...core.common import check_cancel, clean, metric
@@ -11,7 +12,7 @@ MID = 'head_line'
 
 
 def finite(value):
-    return isinstance(value, (float, int)) and math.isfinite(value)
+    return isinstance(value, Real) and math.isfinite(value)
 
 
 def kill_exclusion(event, provider, states, events):
@@ -59,6 +60,11 @@ REASONS = {
 
 
 def window_measure(rows, start, end, dt, provider):
+    # Parquet nullable numeric columns can return integral floats. Reject
+    # fractional ticks rather than truncating them into a different sample.
+    if not all(finite(v) and float(v).is_integer() for v in (start,end)):
+        raise ValueError('Aim window boundaries must be integral ticks')
+    start,end=int(start),int(end)
     by_tick = {int(s['tick']): clean(s) for s in rows}
     curve, values = [], []
     valid_seconds = 0.0
@@ -68,7 +74,7 @@ def window_measure(rows, start, end, dt, provider):
     for tick in range(start, end):
         a, b = by_tick.get(tick), by_tick.get(tick + 1)
         def usable(s):
-            return (s is not None and s.get('is_alive') is True and finite(s.get('pitch'))
+            return (s is not None and s.get('is_alive') is True and finite(s.get('pitch')) and -90<=s['pitch']<=90
                     and provider.get(s.get('active_weapon_name')) is not None)
         valid = (usable(a) and usable(b) and a.get('weapon_handle') is not None
                  and a['weapon_handle'] == b.get('weapon_handle') and a.get('pawn_handle') is not None
@@ -81,6 +87,12 @@ def window_measure(rows, start, end, dt, provider):
         else:
             curve.append({'tick': tick, 'view_pitch': None, 'view_yaw': None, 'segment_id': None})
         previous_valid = bool(valid)
+    # Include the last observed endpoint without adding an extra interval.
+    valid_seconds=len(values)*dt
+    if previous_valid:
+        final=by_tick[end]
+        values.append(final['pitch'])
+        curve.append({'tick':end,'view_pitch':final['pitch'],'view_yaw':final.get('yaw'),'segment_id':segment})
     return {'curve': curve, 'valid_seconds': valid_seconds, 'sample_count': len(values),
             'pitch_p95_p5': float(np.percentile(values,95)-np.percentile(values,5)) if len(values)>=2 else None,
             'pitch_range': max(values)-min(values) if len(values)>=2 else None}

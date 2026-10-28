@@ -1,5 +1,6 @@
 # CS2 Demo Evidence Lab
 
+**1.0.1** · 源码整合包；首次需要 Python 3.12（64 位）与 Node.js 24。外层 `START.cmd` 启动，`STOP.cmd` 关闭。
 **用于 Counter-Strike 2 demo 分析与比赛复盘的离线工作台。**
 
 [English](README.md) · 简体中文
@@ -82,3 +83,4 @@ npm.cmd run build --prefix app/frontend
 ## 第三方资源
 
 内置雷达底图来源于 Awpy-data / Valve，来源与版权信息见 [地图资源声明](app/frontend/public/maps/NOTICE.txt)。第三方依赖遵循各自许可证。
+

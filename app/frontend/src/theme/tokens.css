@@ -1,0 +1,206 @@
+/* Design tokens: five duotone palettes, light/dark, glass, radius and type.
+   Palette core = 5 colours; everything else is derived with color-mix so a
+   custom palette keeps the same contrast structure as the presets. */
+
+:root {
+  --font-sans: "Inter", "Segoe UI", "Microsoft YaHei UI", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", monospace;
+
+  --r-xs: 6px;
+  --r-sm: 9px;
+  --r-md: 13px;
+  --r-lg: 18px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 22px;
+  --sp-6: 30px;
+  --sp-7: 40px;
+  --sp-8: 56px;
+
+  --nav-w: 252px;
+  --max-w: 1480px;
+
+  --dur-1: 120ms;
+  --dur-2: 200ms;
+  --ease: cubic-bezier(.2, .7, .25, 1);
+
+  /* Core colours are replaced by a palette block below. */
+  --bg: #faf7f2;
+  --surface: #fffdf9;
+  --text: #221a12;
+  --accent: #e85d04;
+  --accent-2: #1d4e89;
+  --accent-contrast: #231305;
+
+  /* Derived surfaces and text. */
+  --surface-2: color-mix(in srgb, var(--surface) 92%, var(--text) 8%);
+  --surface-3: color-mix(in srgb, var(--surface) 84%, var(--text) 16%);
+  --field: color-mix(in srgb, var(--surface) 96%, var(--text) 4%);
+  --border: color-mix(in srgb, var(--text) 15%, transparent);
+  --border-strong: color-mix(in srgb, var(--text) 26%, transparent);
+  --text-2: color-mix(in srgb, var(--text) 82%, var(--bg));
+  --muted: color-mix(in srgb, var(--text) 68%, var(--bg));
+  --faint: color-mix(in srgb, var(--text) 60%, var(--bg));
+  --accent-hover: color-mix(in srgb, var(--accent) 84%, var(--text));
+  --accent-ink: color-mix(in srgb, var(--accent) 74%, var(--text));
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, var(--surface));
+  --accent-soft-2: color-mix(in srgb, var(--accent) 22%, var(--surface));
+  --accent-border: color-mix(in srgb, var(--accent) 46%, transparent);
+  --accent-2-soft: color-mix(in srgb, var(--accent-2) 12%, var(--surface));
+  --accent-2-border: color-mix(in srgb, var(--accent-2) 44%, transparent);
+  --accent-2-ink: color-mix(in srgb, var(--accent-2) 76%, var(--text));
+
+  /* Semantic colours are deliberately independent of the palette. */
+  --ok: #0f7a41;
+  --ok-soft: #e6f6ec;
+  --ok-border: #b3e0c4;
+  --warn: #8a5a00;
+  --warn-soft: #fff4d6;
+  --warn-border: #ecd39b;
+  --danger: #b3261e;
+  --danger-soft: #fdeceb;
+  --danger-border: #efc0bc;
+  --info: #1b5e9e;
+  --info-soft: #e9f2fc;
+  --info-border: #b9d5ef;
+
+  --focus: var(--accent);
+  --chart-grid: color-mix(in srgb, var(--text) 13%, transparent);
+  --chart-1: var(--accent);
+  --chart-2: var(--accent-2);
+  --chart-3: var(--info);
+  --chart-4: var(--muted);
+  --stage: #0b1118;
+  --stage-text: #e8eef5;
+  --overlay: color-mix(in srgb, #000 46%, transparent);
+
+  --shadow-sm: 0 1px 2px color-mix(in srgb, var(--text) 10%, transparent);
+  --shadow-md: 0 10px 30px color-mix(in srgb, var(--text) 12%, transparent);
+  --shadow-lg: 0 26px 70px color-mix(in srgb, var(--text) 20%, transparent);
+
+  --glass-bg: color-mix(in srgb, var(--surface) 68%, transparent);
+  --glass-strong: color-mix(in srgb, var(--surface) 82%, transparent);
+  --glass-border: color-mix(in srgb, var(--text) 18%, transparent);
+  --glass-blur: 22px;
+
+  --sidebar-bg: color-mix(in srgb, var(--surface) 74%, transparent);
+  --header-bg: color-mix(in srgb, var(--bg) 78%, transparent);
+
+  color-scheme: light;
+}
+
+/* ---------- light palettes ---------- */
+:root[data-palette="orange"] {
+  --bg: #faf7f2;
+  --surface: #fffdf9;
+  --text: #221a12;
+  --accent: #e85d04;
+  --accent-2: #1d4e89;
+  --accent-contrast: #ffffff;
+}
+:root[data-palette="blue"] {
+  --bg: #f3f6fd;
+  --surface: #ffffff;
+  --text: #121b2b;
+  --accent: #2449d8;
+  --accent-2: #f0642d;
+  --accent-contrast: #ffffff;
+}
+:root[data-palette="violet"] {
+  --bg: #f7f4fe;
+  --surface: #ffffff;
+  --text: #1c1530;
+  --accent: #6633e0;
+  --accent-2: #b8860b;
+  --accent-contrast: #ffffff;
+}
+:root[data-palette="teal"] {
+  --bg: #f1faf7;
+  --surface: #ffffff;
+  --text: #0f2420;
+  --accent: #0a8577;
+  --accent-2: #cf4530;
+  --accent-contrast: #ffffff;
+}
+:root[data-palette="magenta"] {
+  --bg: #fdf5fa;
+  --surface: #ffffff;
+  --text: #2a1422;
+  --accent: #c01a6c;
+  --accent-2: #0a6f7c;
+  --accent-contrast: #ffffff;
+}
+
+/* ---------- dark theme ---------- */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0f0c09;
+  --surface: #17120e;
+  --text: #f5ede4;
+  --accent: #ff8a3d;
+  --accent-2: #8ab4ff;
+  --accent-contrast: #1a0e05;
+
+  --ok: #63d69b;
+  --ok-soft: #0f2b20;
+  --ok-border: #245c43;
+  --warn: #f2c66d;
+  --warn-soft: #2b2311;
+  --warn-border: #5c4a1f;
+  --danger: #ff9a91;
+  --danger-soft: #2e1517;
+  --danger-border: #6b2b2a;
+  --info: #8cc7ff;
+  --info-soft: #0f2234;
+  --info-border: #2a5277;
+
+  --shadow-sm: 0 1px 2px #0006;
+  --shadow-md: 0 12px 34px #0007;
+  --shadow-lg: 0 30px 80px #000a;
+  --overlay: color-mix(in srgb, #000 62%, transparent);
+  --header-bg: color-mix(in srgb, var(--bg) 76%, transparent);
+  --muted: color-mix(in srgb, var(--text) 64%, var(--bg));
+  --faint: color-mix(in srgb, var(--text) 52%, var(--bg));
+}
+:root[data-theme="dark"][data-palette="orange"] {
+  --bg: #0f0c09; --surface: #17120e; --text: #f5ede4;
+  --accent: #ff8a3d; --accent-2: #8ab4ff; --accent-contrast: #1a0e05;
+}
+:root[data-theme="dark"][data-palette="blue"] {
+  --bg: #080d16; --surface: #101725; --text: #e9effa;
+  --accent: #7f9dff; --accent-2: #ff8b60; --accent-contrast: #0a1020;
+}
+:root[data-theme="dark"][data-palette="violet"] {
+  --bg: #0d0a15; --surface: #151022; --text: #f0eaff;
+  --accent: #a78bff; --accent-2: #ffd34d; --accent-contrast: #140c28;
+}
+:root[data-theme="dark"][data-palette="teal"] {
+  --bg: #07120f; --surface: #0d1c18; --text: #e5f6f1;
+  --accent: #3fd6c4; --accent-2: #ff8a70; --accent-contrast: #04201c;
+}
+:root[data-theme="dark"][data-palette="magenta"] {
+  --bg: #120811; --surface: #1c0f19; --text: #fbeaf4;
+  --accent: #ff6aac; --accent-2: #64e3ef; --accent-contrast: #28061a;
+}
+
+/* Custom palettes inject the five core colours inline. Keep readable
+   fall-back semantic colours from the active light/dark block. */
+:root[data-palette="custom"] {
+  --accent-contrast: var(--custom-accent-ink, #ffffff);
+}
+
+/* Typography scale and density. */
+:root[data-density="compact"] {
+  --sp-4: 12px;
+  --sp-5: 16px;
+  --sp-6: 22px;
+}
+
+@media (max-width: 1100px) {
+  :root { --nav-w: 220px; }
+}

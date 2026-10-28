@@ -1,6 +1,36 @@
-.flash-review h2{margin:0}.flash-review .row p{margin-bottom:0}.flash-caveat{padding:12px 15px;border-left:3px solid var(--warning);background:var(--field);font-size:12px;line-height:1.8;color:var(--secondary)}
-.flash-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:20px 0}.flash-summary>span{padding:14px;background:var(--field);border:1px solid var(--border);border-radius:8px;font-size:12px;color:var(--secondary)}.flash-summary strong{display:block;font-size:25px;line-height:1.5;color:var(--text)}
-.flash-toolbar{display:flex;gap:16px;align-items:end;margin-bottom:18px}.flash-list{display:grid;gap:14px}.flash-card{border:1px solid var(--border);border-radius:10px;padding:18px;background:var(--surface)}.flash-card-heading{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.flash-card-heading>div{margin-right:auto}.flash-card-heading small{display:block;margin-top:5px}.flash-card-heading button{white-space:nowrap}
-.flash-effects{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.flash-effect{min-width:150px;display:flex;flex-direction:column;gap:5px;border:1px solid var(--border);border-left:3px solid var(--muted);padding:10px 12px;border-radius:7px;font-size:12px}.flash-effect strong{font-size:17px}.flash-effect.flash-enemy{border-left-color:var(--accent)}.flash-effect.flash-teammate,.flash-effect.flash-self{border-left-color:var(--warning)}.flash-kills{background:var(--field);padding:10px 14px;border-radius:6px;margin-bottom:12px;font-size:12px}.flash-kills p{margin:5px 0}.flash-card details{font-size:12px;line-height:1.8;color:var(--secondary)}.flash-card summary{cursor:pointer;color:var(--muted)}
-.flash-assists{border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:18px}.flash-assist-row{display:flex;align-items:center;gap:10px;justify-content:space-between;padding:10px 0;border-top:1px solid var(--border);font-size:12px}.flash-pagination{display:flex;gap:10px;justify-content:flex-end;align-items:center;margin-top:16px;font-size:12px}
-@media(max-width:760px){.flash-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.flash-card{padding:13px}.flash-card-heading{gap:8px}.flash-toolbar{flex-wrap:wrap}.flash-assist-row{align-items:flex-start}.flash-effect{min-width:120px;flex:1}.flash-card-heading>div{min-width:120px}}
+/* Flash review. */
+.flash-review { margin-top: 16px; }
+.flash-review h2 { margin: 0; }
+.flash-review .row p { margin-bottom: 0; }
+.flash-caveat { padding: 11px 14px; border-left: 3px solid var(--warn); background: var(--warn-soft); font-size: 12px; line-height: 1.7; color: var(--text-2); border-radius: 0 var(--r-sm) var(--r-sm) 0; }
+.flash-summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 16px 0; }
+.flash-summary > span { padding: 12px 13px; background: var(--field); border: 1px solid var(--border); border-radius: var(--r-sm); font-size: 11.5px; color: var(--muted); }
+.flash-summary strong { display: block; font: 24px/1.4 var(--font-mono); color: var(--text); }
+.flash-toolbar { display: flex; gap: 12px; align-items: flex-end; margin-bottom: 14px; flex-wrap: wrap; }
+.flash-list { display: grid; gap: 10px; }
+.flash-card { border: 1px solid var(--border); border-radius: var(--r-md); padding: 15px; background: var(--surface); }
+.flash-card-heading { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.flash-card-heading > div { margin-right: auto; }
+.flash-card-heading small { display: block; margin-top: 2px; }
+.flash-card-heading button { white-space: nowrap; font-size: 11.5px; }
+.flash-effects { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+.flash-effect { min-width: 150px; display: flex; flex-direction: column; gap: 3px; border: 1px solid var(--border); border-left: 3px solid var(--muted); padding: 9px 11px; border-radius: var(--r-sm); font-size: 11.5px; background: var(--field); }
+.flash-effect strong { font: 16px var(--font-mono); }
+.flash-effect.flash-enemy { border-left-color: var(--accent); }
+.flash-effect.flash-teammate, .flash-effect.flash-self { border-left-color: var(--warn); }
+.flash-kills { background: var(--field); padding: 9px 12px; border-radius: var(--r-sm); margin-bottom: 9px; font-size: 11.5px; border: 1px solid var(--border); }
+.flash-kills p { margin: 4px 0; }
+.flash-card details { font-size: 11.5px; line-height: 1.7; color: var(--text-2); }
+.flash-card summary { cursor: pointer; color: var(--muted); }
+.flash-assists { border: 1px solid var(--border); border-radius: var(--r-sm); padding: 12px; margin-bottom: 14px; background: var(--field); }
+.flash-assist-row { display: flex; align-items: center; gap: 10px; justify-content: space-between; padding: 8px 0; border-top: 1px solid var(--border); font-size: 11.5px; }
+.flash-pagination { display: flex; gap: 8px; justify-content: flex-end; align-items: center; margin-top: 12px; font-size: 11.5px; }
+@media (max-width: 760px) {
+  .flash-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .flash-card { padding: 12px; }
+  .flash-card-heading { gap: 7px; }
+  .flash-toolbar { flex-wrap: wrap; }
+  .flash-assist-row { align-items: flex-start; }
+  .flash-effect { min-width: 120px; flex: 1; }
+  .flash-card-heading > div { min-width: 120px; }
+}

@@ -1,5 +1,6 @@
 # CS2 Demo Evidence Lab
 
+**1.0.1** · Source distribution. Requires Python 3.12 (64-bit) and Node.js 24 on first setup. Use the outer START.cmd / STOP.cmd launchers.
 **An offline workspace for Counter-Strike 2 demo analysis and match review.**
 
 English · [简体中文](README.zh-CN.md)
@@ -31,9 +32,9 @@ The included launch scripts target **Windows**.
 
 1. Download or clone the repository.
 2. Run `app/setup.cmd` to install dependencies and build the frontend. This initial step requires an internet connection.
-3. Run `app/start.cmd` and open [http://127.0.0.1:8765](http://127.0.0.1:8765).
+3. Run `START.cmd` and open [http://127.0.0.1:8765](http://127.0.0.1:8765).
 4. Import a `.dem` file and choose a completed analysis to explore.
-5. Run `app/stop.cmd` when you want to stop the local service.
+5. Run `STOP.cmd` when you want to stop the local service.
 
 This is a source distribution, not a standalone executable. Once dependencies are installed, demo analysis and the bundled radar maps work offline.
 
@@ -84,3 +85,4 @@ The detailed technical documentation is currently in Chinese.
 ## Third-party assets
 
 Bundled radar maps originate from Awpy-data / Valve. See the [map asset notice](app/frontend/public/maps/NOTICE.txt) for sources and copyright information. Third-party dependencies retain their respective licenses.
+

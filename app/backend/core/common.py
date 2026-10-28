@@ -4,7 +4,7 @@ import numpy as np
 
 APP = Path(__file__).resolve().parents[2]
 DATA = Path(os.environ.get('CS2_DATA_DIR', APP / 'data')).resolve()
-VERSION = '1.0.1'
+VERSION = '1.1.0'
 PROVIDERS_VERSION = 'experimental-1'
 
 def clean(x):
