@@ -81,7 +81,7 @@ def test_round_id_survives_raw_reset_and_overtime():
     r=make_rounds(ev,500);assert len(set(x['round_id'] for x in r))==5 and r[-1]['raw_round']==26
 def test_zero_denominator_unknown():assert ratio(0,0) is None and ratio(5,0) is None
 def test_registry_planned_empty():
-    m=discover();assert set(m)=={'basic_stats','head_line','stop_shooting','recoil_control','combat_review','role_analysis','positioning_analysis','utility_analysis'}
+    m=discover();assert set(m)=={'basic_stats','head_line','stop_shooting','recoil_control','combat_review','role_analysis','positioning_analysis','utility_analysis','fun_stats'}
     for k in ['role_analysis','positioning_analysis']:
         assert not m[k]['enabled'] and not m[k]['metric_ids'] and not m[k]['parameters_schema_body']['properties']
 def test_planned_never_queued():

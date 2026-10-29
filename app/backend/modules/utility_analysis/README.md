@@ -1,4 +1,4 @@
-# 闪光弹分析 v2.0.0
+# 闪光弹分析 v2.0.1
 
 模块 ID 保持 `utility_analysis`，仅实现闪光弹；烟、火、雷不进入本版。
 
@@ -31,3 +31,7 @@
 `app/.venv/Scripts/python.exe -X utf8 -m pytest app/tests/test_flash_analysis.py -q`：17 项测试覆盖唯一匹配、实体复用、同 tick 歧义、缺失事件流、队伍缺失、状态持续值、pawn/生命/时间中断、闪助与关联差异、同 tick 击杀、取消。
 
 真实 demo `e454e16b…de2f43` 的只读探针：91 次引爆、71 颗检测到状态变化、20 颗未检测到可唯一归属的变化；73 条敌方、51 条队友、28 条自己记录，7 次游戏闪助，13 颗存在窗口内击杀关联。无原生 `player_blind`，因此结果为 partial。探针使用原始事实状态和直接解析的新增引爆事件，未改写旧事实缓存；模块耗时 7.91 秒，不是完整冷解析耗时。详见 `app/docs/flash-validation.json`。
+
+## 2.0.1 原生阵营规则
+
+原生 player_blind.attacker_team_num 有效时优先用于敌我判定，缺失时回退到引爆事件阵营，与 fun_stats 1.0.2 一致。effects 中保留 event_team、detonation_team、team_conflict。状态推导及闪后击杀时间关联保持原有口径。模块版本升级会更改重算缓存身份；已有报告不会自动重写。

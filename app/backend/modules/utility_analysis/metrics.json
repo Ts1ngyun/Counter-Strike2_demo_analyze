@@ -20,7 +20,7 @@
     },
     "source": "demo 原生事件与实体状态；产品公开计算规则",
     "limitations": "缺少player_blind时仅检测新正值变化，并非完整命中人数；未检测不等于0。记录时长不是屏幕全白时长；闪后击杀关联不证明因果。",
-    "algorithm_version": "2.0.0",
+    "algorithm_version": "2.0.1",
     "evidence_entry": "GET /api/jobs/{job_id}/evidence/utility_analysis?metric_id=flash_detonations"
   },
   "enemy_affected_flashes": {
@@ -44,7 +44,7 @@
     },
     "source": "demo 原生事件与实体状态；产品公开计算规则",
     "limitations": "缺少player_blind时仅检测新正值变化，并非完整命中人数；未检测不等于0。记录时长不是屏幕全白时长；闪后击杀关联不证明因果。",
-    "algorithm_version": "2.0.0",
+    "algorithm_version": "2.0.1",
     "evidence_entry": "GET /api/jobs/{job_id}/evidence/utility_analysis?metric_id=enemy_affected_flashes"
   },
   "enemy_blind_records": {
@@ -68,7 +68,7 @@
     },
     "source": "demo 原生事件与实体状态；产品公开计算规则",
     "limitations": "缺少player_blind时仅检测新正值变化，并非完整命中人数；未检测不等于0。记录时长不是屏幕全白时长；闪后击杀关联不证明因果。",
-    "algorithm_version": "2.0.0",
+    "algorithm_version": "2.0.1",
     "evidence_entry": "GET /api/jobs/{job_id}/evidence/utility_analysis?metric_id=enemy_blind_records"
   },
   "teammate_blind_records": {
@@ -92,7 +92,7 @@
     },
     "source": "demo 原生事件与实体状态；产品公开计算规则",
     "limitations": "缺少player_blind时仅检测新正值变化，并非完整命中人数；未检测不等于0。记录时长不是屏幕全白时长；闪后击杀关联不证明因果。",
-    "algorithm_version": "2.0.0",
+    "algorithm_version": "2.0.1",
     "evidence_entry": "GET /api/jobs/{job_id}/evidence/utility_analysis?metric_id=teammate_blind_records"
   },
   "self_blind_records": {
@@ -116,7 +116,7 @@
     },
     "source": "demo 原生事件与实体状态；产品公开计算规则",
     "limitations": "缺少player_blind时仅检测新正值变化，并非完整命中人数；未检测不等于0。记录时长不是屏幕全白时长；闪后击杀关联不证明因果。",
-    "algorithm_version": "2.0.0",
+    "algorithm_version": "2.0.1",
     "evidence_entry": "GET /api/jobs/{job_id}/evidence/utility_analysis?metric_id=self_blind_records"
   },
   "flash_assists_recorded": {
@@ -140,7 +140,7 @@
     },
     "source": "demo 原生事件与实体状态；产品公开计算规则",
     "limitations": "缺少player_blind时仅检测新正值变化，并非完整命中人数；未检测不等于0。记录时长不是屏幕全白时长；闪后击杀关联不证明因果。",
-    "algorithm_version": "2.0.0",
+    "algorithm_version": "2.0.1",
     "evidence_entry": "GET /api/jobs/{job_id}/evidence/utility_analysis?metric_id=flash_assists_recorded"
   }
 }

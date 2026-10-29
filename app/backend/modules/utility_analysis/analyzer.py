@@ -131,9 +131,13 @@ def analyze(ctx, p, cancel, progress):
                                   'reason': '实体 ID、同 tick、投掷者不能唯一配对，或受影响玩家/时长缺失'})
                 unmatched_by_round[rid].append(e)
                 continue
+            event_team = number(e.get('attacker_team_num'))
+            source_team = event_team if event_team in (2, 3) else f['team']
+            team_conflict = event_team in (2, 3) and f['team'] in (2, 3) and event_team != f['team']
             f['effects'].append({'event_id': e['event_id'], 'target_id': target,
                                  'target_name': e.get('user_name', target), 'tick': int(e['tick']),
-                                 'relation': relation(f['player_id'], target, f['team'], e.get('user_team_num')),
+                                 'relation': relation(f['player_id'], target, source_team, e.get('user_team_num')),
+                                 'event_team': event_team, 'detonation_team': f['team'], 'team_conflict': team_conflict,
                                  'duration': duration, 'quality': 'observed', 'source': 'player_blind',
                                  'reason': '原生致盲事件按实体 ID 与同 tick 唯一匹配'})
         by_tick = defaultdict(list)
@@ -209,7 +213,7 @@ def analyze(ctx, p, cancel, progress):
     for u in unmatched:
         evidence.append({'evidence_id': 'unmatched:' + u['event_id'], **u, 'player_id': u['player_id'] or '',
                          'kind': 'flash_unmatched', 'weapon': 'flashbang', 'values': {'unmatched': True},
-                         'raw_field_paths': ['player_blind.entityid', 'player_blind.blind_duration']})
+                         'raw_field_paths': ['player_blind.entityid', 'player_blind.blind_duration', 'player_blind.attacker_team_num', 'player_blind.user_team_num']})
     metrics = []
     all_deaths = [d for ds in deaths_by_round.values() for d in ds]
     assist_unknown = sum(not isinstance(d.get('assistedflash'), bool) or (d.get('assistedflash') is True and
