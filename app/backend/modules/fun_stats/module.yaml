@@ -1,0 +1,38 @@
+{
+  "id": "fun_stats",
+  "version": "1.0.2",
+  "contract_version": 1,
+  "title": "趣味统计",
+  "status": "active",
+  "enabled": true,
+  "description": "闪到队友的简明汇总；只用原生致盲事件，不用伤害或状态推断失明",
+  "requires": {
+    "tables": [
+      "events",
+      "players",
+      "rounds"
+    ],
+    "capabilities": {
+      "all_of": [
+        "events"
+      ]
+    }
+  },
+  "optional_capabilities": [],
+  "feature_dependencies": [],
+  "module_dependencies": [],
+  "raw_fields": [],
+  "parameters_schema": "parameters.schema.json",
+  "result_schema": "result.schema.json",
+  "metric_ids": [
+    "teammate_flash_effects",
+    "teammates_flashed",
+    "teammate_blind_seconds",
+    "teammate_flash_incidents"
+  ],
+  "views": [
+    "summary_cards",
+    "evidence_table"
+  ],
+  "order": 7
+}

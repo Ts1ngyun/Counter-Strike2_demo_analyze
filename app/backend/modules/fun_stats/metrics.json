@@ -1,0 +1,87 @@
+{
+  "teammate_flash_effects": {
+    "title": "闪到队友次数",
+    "definition": "原生致盲事件中投掷者与该玩家同队、非本人、记录时长大于 0 的效果数，按（闪光身份, 受影响队友）去重；闪光身份=配对引爆事件，或原生 entityid+tick",
+    "formula": "Σ 每颗闪对每名队友的一次致盲记录；同一颗闪对同一队友只计一次",
+    "unit": "count",
+    "sample_unit": "blind_effect",
+    "numerator_denominator": "计数无比率分母；coverage=可判定敌我关系且具备闪光身份的该玩家致盲记录/该玩家全部可归属致盲记录，未知单独保留",
+    "inclusion": "完整正式回合内的原生 player_blind；投掷者与受影响玩家 SteamID 有效；阵营可判定；blind_duration 缺失仍计效果但时长单独记 unknown；时长为 0 不计",
+    "exclusion": "热身、重开、不完整回合、回合结束后的记录；阵营或闪光身份缺失；时长为 0；重复的同一（闪光身份, 队友）记录",
+    "field_dependencies": [
+      "player_blind.attacker_steamid",
+      "player_blind.user_steamid",
+      "player_blind.attacker_team_num",
+      "player_blind.user_team_num",
+      "player_blind.blind_duration",
+      "player_blind.entityid",
+      "flashbang_detonate.entityid"
+    ],
+    "time_requirements": "原生事件按同 tick、同 entityid、同投掷者唯一配对；entityid 缺失不配对；不靠最近时间或位置强配",
+    "parameters": {},
+    "source": "demo 原生 player_blind 事件；不使用伤害、击杀或 flash_duration 推断",
+    "limitations": "阵营或闪光身份未知的记录计入 unknown，不当作 0；数值是已知下限。同一队友在不同闪光中重复计数。",
+    "algorithm_version": "1.0.2",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/fun_stats?metric_id=teammate_flash_effects"
+  },
+  "teammates_flashed": {
+    "title": "被闪过的队友数",
+    "definition": "被该玩家闪光致盲过的不同队友数；同一队友多次被闪只计一次",
+    "formula": "distinct（受影响队友 SteamID）",
+    "unit": "count",
+    "sample_unit": "teammate",
+    "numerator_denominator": "计数无比率分母；coverage 与闪到队友次数同一分母",
+    "inclusion": "同上；每个队友取第一条可核对证据作为代表",
+    "exclusion": "同上；同一队友跨回合去重",
+    "field_dependencies": [
+      "player_blind.user_steamid",
+      "player_blind.user_team_num"
+    ],
+    "time_requirements": "逐条原生事件；不跨回合插值",
+    "parameters": {},
+    "source": "demo 原生 player_blind 事件",
+    "limitations": "只反映记录到的队友，不是队伍实际受影响人数的完整清单；阵营未知不计入。",
+    "algorithm_version": "1.0.2",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/fun_stats?metric_id=teammates_flashed"
+  },
+  "teammate_blind_seconds": {
+    "title": "队友记录致盲时长",
+    "definition": "每（闪光身份, 队友）配对记录一次 blind_duration 后求和；时长缺失的单列 unknown，数值是已知下限",
+    "formula": "Σ blind_duration（同一（闪光身份, 队友）只加一次）；缺失时长不计入分子但计入 unknown",
+    "unit": "second",
+    "sample_unit": "blind_effect",
+    "numerator_denominator": "求和无比率分母；coverage=有时长的效果/（全部效果+阵营未知记录）",
+    "inclusion": "同上，且 blind_duration 可用",
+    "exclusion": "时长缺失或为负时不计入求和，只计入 unknown；重复配对只算一次",
+    "field_dependencies": [
+      "player_blind.blind_duration"
+    ],
+    "time_requirements": "单次致盲的记录时长，不按 tick 累加",
+    "parameters": {},
+    "source": "demo 原生 player_blind 事件",
+    "limitations": "记录时长不是屏幕白化时长或剩余致盲时间；有缺失时数值是已知下限，必须结合 unknown 与覆盖率阅读；不能据此判断击杀瞬间的可见状态。",
+    "algorithm_version": "1.0.2",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/fun_stats?metric_id=teammate_blind_seconds"
+  },
+  "teammate_flash_incidents": {
+    "title": "闪到队友的闪光颗数",
+    "definition": "该玩家引爆的闪光中，至少致盲一名队友的颗数；配对要求同 tick、同 entityid、同投掷者且 entityid 有效",
+    "formula": "count（detonation：存在 ≥1 条同队非本人致盲记录）",
+    "unit": "count",
+    "sample_unit": "detonation",
+    "numerator_denominator": "计数无比率分母；coverage=可判定影响的闪/该玩家全部引爆闪",
+    "inclusion": "完整正式回合内归属于该玩家的 flashbang_detonate，且配对到原生致盲记录",
+    "exclusion": "无法判定影响（缺原生事件流、同 tick 多颗闪、实体缺失或投掷者不唯一）的闪不判为 0，计入 unknown",
+    "field_dependencies": [
+      "flashbang_detonate.user_steamid",
+      "flashbang_detonate.entityid",
+      "player_blind.entityid"
+    ],
+    "time_requirements": "同 tick、同 entityid、同投掷者唯一配对；entityid 缺失不配对，不按最近时间或最近位置强配",
+    "parameters": {},
+    "source": "demo 原生事件；与 utility_analysis 的配对规则一致，阵营判定以原生致盲事件优先",
+    "limitations": "缺少 player_blind 的 demo 上该指标为 unavailable，而不是 0；引爆阵营与致盲事件阵营冲突时按原生事件判定并记录在 team_conflicts。",
+    "algorithm_version": "1.0.2",
+    "evidence_entry": "GET /api/jobs/{job_id}/evidence/fun_stats?metric_id=teammate_flash_incidents"
+  }
+}
